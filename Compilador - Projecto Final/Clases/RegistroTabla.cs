@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Procesos
+namespace Compilador___Projecto_Final
 {
     /// <summary>
     /// Objeto que ayudará a crear un registro en la tabla de simbolos, OJO que solo se crean

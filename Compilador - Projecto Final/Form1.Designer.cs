@@ -35,10 +35,10 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSINTACTICO = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_Output = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_Input = new System.Windows.Forms.TextBox();
             this.BTNCLEAR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -112,7 +112,7 @@ namespace Compilador___Projecto_Final
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox_Output);
             this.groupBox1.Location = new System.Drawing.Point(420, 56);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(391, 333);
@@ -120,13 +120,13 @@ namespace Compilador___Projecto_Final
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output";
             // 
-            // textBox2
+            // textBox_Output
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 12);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(379, 315);
-            this.textBox2.TabIndex = 0;
+            this.textBox_Output.Location = new System.Drawing.Point(6, 12);
+            this.textBox_Output.Multiline = true;
+            this.textBox_Output.Name = "textBox_Output";
+            this.textBox_Output.Size = new System.Drawing.Size(379, 315);
+            this.textBox_Output.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -140,7 +140,7 @@ namespace Compilador___Projecto_Final
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.textBox_Input);
             this.groupBox3.Location = new System.Drawing.Point(12, 56);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(388, 333);
@@ -148,14 +148,14 @@ namespace Compilador___Projecto_Final
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input";
             // 
-            // textBox1
+            // textBox_Input
             // 
-            this.textBox1.AcceptsReturn = true;
-            this.textBox1.Location = new System.Drawing.Point(6, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 315);
-            this.textBox1.TabIndex = 5;
+            this.textBox_Input.AcceptsReturn = true;
+            this.textBox_Input.Location = new System.Drawing.Point(6, 12);
+            this.textBox_Input.Multiline = true;
+            this.textBox_Input.Name = "textBox_Input";
+            this.textBox_Input.Size = new System.Drawing.Size(376, 315);
+            this.textBox_Input.TabIndex = 5;
             // 
             // BTNCLEAR
             // 
@@ -163,7 +163,7 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCLEAR.Location = new System.Drawing.Point(711, 9);
+            this.BTNCLEAR.Location = new System.Drawing.Point(721, 10);
             this.BTNCLEAR.Name = "BTNCLEAR";
             this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
             this.BTNCLEAR.TabIndex = 9;
@@ -207,8 +207,8 @@ namespace Compilador___Projecto_Final
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button BTNCLEAR;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_Output;
+        private System.Windows.Forms.TextBox textBox_Input;
     }
 }
 

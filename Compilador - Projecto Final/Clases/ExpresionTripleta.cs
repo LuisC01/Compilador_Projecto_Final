@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procesos
+namespace Compilador___Projecto_Final
 {
     public class ExpresionTripleta
     {
