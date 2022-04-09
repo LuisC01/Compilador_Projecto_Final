@@ -33,14 +33,14 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADOR_LEXICO = new System.Windows.Forms.Button();
             this.BTNANALIZADORSEMANTICO = new System.Windows.Forms.Button();
             this.BTNANALIZADORSINTACTICO = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGripTablaDeSimbolos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox_Output = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox_Input = new System.Windows.Forms.TextBox();
             this.BTNCLEAR = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGripTablaDeSimbolos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -102,13 +102,13 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSINTACTICO.UseVisualStyleBackColor = false;
             this.BTNANALIZADORSINTACTICO.Click += new System.EventHandler(this.BTNANALIZADORSINTACTICO_Click);
             // 
-            // dataGridView1
+            // dataGripTablaDeSimbolos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 15);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(680, 150);
-            this.dataGridView1.TabIndex = 5;
+            this.dataGripTablaDeSimbolos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGripTablaDeSimbolos.Location = new System.Drawing.Point(6, 15);
+            this.dataGripTablaDeSimbolos.Name = "dataGripTablaDeSimbolos";
+            this.dataGripTablaDeSimbolos.Size = new System.Drawing.Size(680, 150);
+            this.dataGripTablaDeSimbolos.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -130,7 +130,7 @@ namespace Compilador___Projecto_Final
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.dataGripTablaDeSimbolos);
             this.groupBox2.Location = new System.Drawing.Point(60, 399);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(692, 171);
@@ -186,7 +186,7 @@ namespace Compilador___Projecto_Final
             this.Controls.Add(this.BTNCOMPILAR);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGripTablaDeSimbolos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -202,7 +202,7 @@ namespace Compilador___Projecto_Final
         private System.Windows.Forms.Button BTNANALIZADOR_LEXICO;
         private System.Windows.Forms.Button BTNANALIZADORSEMANTICO;
         private System.Windows.Forms.Button BTNANALIZADORSINTACTICO;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGripTablaDeSimbolos;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
