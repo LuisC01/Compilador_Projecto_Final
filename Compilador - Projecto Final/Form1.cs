@@ -17,7 +17,7 @@ namespace Compilador___Projecto_Final
     public partial class Form1 : Form
     {
         private readonly AnalizadorLexico _analizadorLexico;
-        private readonly TablaDeSimbolos _TablaDeSimbolos;
+        private readonly TablaSimbolos _TablaDeSimbolos;
         private readonly AnalizadorSintactico _analizadorSintactico;
         private readonly AnalizadorSemantico _analizadorSemantico;
         private readonly GeneradorCodigo _generadorCodigo;
@@ -26,7 +26,7 @@ namespace Compilador___Projecto_Final
         {
             InitializeComponent();
             _analizadorLexico = new AnalizadorLexico();
-            _TablaDeSimbolos = new TablaDeSimbolos();
+            _TablaDeSimbolos = new TablaSimbolos();
             _analizadorSintactico = new AnalizadorSintactico();
             _analizadorSemantico = new AnalizadorSemantico();
             _generadorCodigo = new GeneradorCodigo();
@@ -215,7 +215,7 @@ namespace Compilador___Projecto_Final
             List<Lexema> lexemas = _analizadorLexico.ExtraerLexemas(codigoSinSaltos);
 
             //Construir la tabla de simbolos
-            _analizadorSintactico.ConstruirTablaDeSimbolos(lexemas);
+            _analizadorSintactico.ConstruirTablaSimbolos(lexemas);
 
             int pos = 0;
 
@@ -224,20 +224,20 @@ namespace Compilador___Projecto_Final
             List<Bloque> bloquesFlat = bloques.SelectMany(y => y.BloquesPlanos()).ToList();
 
             LimpiarTablaDeSimbolos();
-            ImprimirTablaDeSimbolos(_analizadorSintactico.TablaDeSimbolos.RegistrosTabla);
+            ImprimirTablaDeSimbolos(_analizadorSintactico.TablaSimbolos.RegistrosTabla);
             List<string> errores = _analizadorSintactico.ExtraerErroresBloques(bloques);
             if (errores.Count > 0)
             {
-                arbolSintax.Nodes.Clear();
+                //arbolSintax.Nodes.Clear();
                 textBox_Output.Text = ArmarErroresSintax(errores);
             }
             else
             {
                 textBox_Output.Text = "Análisis sintactico correcto!";
                 TreeNode root = null;
-                arbolSintax.Nodes.Clear();
+                //arbolSintax.Nodes.Clear();
                 LlenarArbol(ref root, bloquesFlat);
-                arbolSintax.Nodes.Add(root);
+                //arbolSintax.Nodes.Add(root);
             }
         }
 
@@ -258,15 +258,15 @@ namespace Compilador___Projecto_Final
             List<string> errores = _analizadorSintactico.ExtraerErroresBloques(bloques);
             if (errores.Count > 0)
             {
-                arbolSintax.Nodes.Clear();
+                //arbolSintax.Nodes.Clear();
                 textBox_Output.Text = ArmarErroresSintax(errores);
             }
             else
             {
                 TreeNode root = null;
-                arbolSintax.Nodes.Clear();
+                //arbolSintax.Nodes.Clear();
                 LlenarArbol(ref root, bloquesFlat);
-                arbolSintax.Nodes.Add(root);
+                //arbolSintax.Nodes.Add(root);
 
                 //Desde aca se hace el analisis semantico
                 _analizadorSemantico.ProcesarLexemas(lexemas, bloques);
@@ -283,7 +283,7 @@ namespace Compilador___Projecto_Final
                 }
 
                 LimpiarTablaDeSimbolos();
-                ImprimirTablaDeSimbolos(_analizadorSemantico.TablaDeSimbolos.RegistrosTabla);
+                ImprimirTablaDeSimbolos(_analizadorSemantico.TablaSimbolos.RegistrosTabla);
             }
         }
 
