@@ -55,7 +55,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADOR_LEXICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADOR_LEXICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADOR_LEXICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADOR_LEXICO.Location = new System.Drawing.Point(110, 12);
+            this.BTNANALIZADOR_LEXICO.Location = new System.Drawing.Point(77, 12);
             this.BTNANALIZADOR_LEXICO.Name = "BTNANALIZADOR_LEXICO";
             this.BTNANALIZADOR_LEXICO.Size = new System.Drawing.Size(159, 31);
             this.BTNANALIZADOR_LEXICO.TabIndex = 1;
@@ -69,7 +69,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSEMANTICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADORSEMANTICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADORSEMANTICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADORSEMANTICO.Location = new System.Drawing.Point(308, 12);
+            this.BTNANALIZADORSEMANTICO.Location = new System.Drawing.Point(275, 12);
             this.BTNANALIZADORSEMANTICO.Name = "BTNANALIZADORSEMANTICO";
             this.BTNANALIZADORSEMANTICO.Size = new System.Drawing.Size(171, 31);
             this.BTNANALIZADORSEMANTICO.TabIndex = 2;
@@ -83,7 +83,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSINTACTICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADORSINTACTICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADORSINTACTICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADORSINTACTICO.Location = new System.Drawing.Point(519, 12);
+            this.BTNANALIZADORSINTACTICO.Location = new System.Drawing.Point(486, 12);
             this.BTNANALIZADORSINTACTICO.Name = "BTNANALIZADORSINTACTICO";
             this.BTNANALIZADORSINTACTICO.Size = new System.Drawing.Size(165, 32);
             this.BTNANALIZADORSINTACTICO.TabIndex = 3;
@@ -99,9 +99,9 @@ namespace Compilador___Projecto_Final
             this.Variable,
             this.Tipo,
             this.Valor});
-            this.dataGripTablaDeSimbolos.Location = new System.Drawing.Point(6, 15);
+            this.dataGripTablaDeSimbolos.Location = new System.Drawing.Point(6, 19);
             this.dataGripTablaDeSimbolos.Name = "dataGripTablaDeSimbolos";
-            this.dataGripTablaDeSimbolos.Size = new System.Drawing.Size(680, 150);
+            this.dataGripTablaDeSimbolos.Size = new System.Drawing.Size(680, 146);
             this.dataGripTablaDeSimbolos.TabIndex = 5;
             // 
             // Codigo
@@ -135,6 +135,7 @@ namespace Compilador___Projecto_Final
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox_Output);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(420, 56);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(391, 333);
@@ -145,15 +146,16 @@ namespace Compilador___Projecto_Final
             // textBox_Output
             // 
             this.textBox_Output.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Output.Location = new System.Drawing.Point(6, 12);
+            this.textBox_Output.Location = new System.Drawing.Point(6, 19);
             this.textBox_Output.Multiline = true;
             this.textBox_Output.Name = "textBox_Output";
-            this.textBox_Output.Size = new System.Drawing.Size(379, 315);
+            this.textBox_Output.Size = new System.Drawing.Size(379, 308);
             this.textBox_Output.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGripTablaDeSimbolos);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(60, 399);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(692, 171);
@@ -164,6 +166,7 @@ namespace Compilador___Projecto_Final
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.textBox_Input);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(12, 56);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(388, 333);
@@ -175,10 +178,10 @@ namespace Compilador___Projecto_Final
             // 
             this.textBox_Input.AcceptsReturn = true;
             this.textBox_Input.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Input.Location = new System.Drawing.Point(6, 12);
+            this.textBox_Input.Location = new System.Drawing.Point(6, 20);
             this.textBox_Input.Multiline = true;
             this.textBox_Input.Name = "textBox_Input";
-            this.textBox_Input.Size = new System.Drawing.Size(376, 315);
+            this.textBox_Input.Size = new System.Drawing.Size(376, 307);
             this.textBox_Input.TabIndex = 5;
             // 
             // BTNCLEAR
@@ -187,7 +190,7 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCLEAR.Location = new System.Drawing.Point(716, 11);
+            this.BTNCLEAR.Location = new System.Drawing.Point(683, 11);
             this.BTNCLEAR.Name = "BTNCLEAR";
             this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
             this.BTNCLEAR.TabIndex = 9;
