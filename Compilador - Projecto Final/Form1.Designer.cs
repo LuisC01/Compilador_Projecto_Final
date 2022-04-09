@@ -35,11 +35,11 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSINTACTICO = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.BTNCLEAR = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.BTNCLEAR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -120,6 +120,14 @@ namespace Compilador___Projecto_Final
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(6, 12);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(379, 315);
+            this.textBox2.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
@@ -140,20 +148,6 @@ namespace Compilador___Projecto_Final
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input";
             // 
-            // BTNCLEAR
-            // 
-            this.BTNCLEAR.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCLEAR.Location = new System.Drawing.Point(728, 10);
-            this.BTNCLEAR.Name = "BTNCLEAR";
-            this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
-            this.BTNCLEAR.TabIndex = 9;
-            this.BTNCLEAR.Text = "Limpiar";
-            this.BTNCLEAR.UseVisualStyleBackColor = false;
-            this.BTNCLEAR.Click += new System.EventHandler(this.BTNCLEAR_Click);
-            // 
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
@@ -163,13 +157,19 @@ namespace Compilador___Projecto_Final
             this.textBox1.Size = new System.Drawing.Size(376, 315);
             this.textBox1.TabIndex = 5;
             // 
-            // textBox2
+            // BTNCLEAR
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 12);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(379, 315);
-            this.textBox2.TabIndex = 0;
+            this.BTNCLEAR.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BTNCLEAR.Location = new System.Drawing.Point(730, 18);
+            this.BTNCLEAR.Name = "BTNCLEAR";
+            this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
+            this.BTNCLEAR.TabIndex = 9;
+            this.BTNCLEAR.Text = "Limpiar";
+            this.BTNCLEAR.UseVisualStyleBackColor = false;
+            this.BTNCLEAR.Click += new System.EventHandler(this.BTNCLEAR_Click);
             // 
             // Form1
             // 
