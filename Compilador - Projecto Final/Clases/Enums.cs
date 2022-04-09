@@ -36,7 +36,6 @@ namespace Compilador___Projecto_Final
             Resta,
             Multiplicacion,
             Division,
-            Modulo,
             Incremental,
             Decremental
         }
@@ -54,8 +53,7 @@ namespace Compilador___Projecto_Final
         public enum OperadoresLogicos
         {
             And,
-            Or,
-            Not
+            Or
         }
 
         public enum OperadoresAsignacion
@@ -64,8 +62,7 @@ namespace Compilador___Projecto_Final
             MasIgual,
             MenosIgual,
             MultiplicacionIgual,
-            DivisionIgual,
-            ModuloIgual
+            DivisionIgual
         }
 
         public enum TipoVariable
@@ -87,20 +84,8 @@ namespace Compilador___Projecto_Final
             Default,
             Break,
             For,
-            While,
-            Do,
             Return,
             Continue
-        }
-
-        public enum PalabrasDefinicion
-        {
-            Auto,
-            Signed,
-            Const,
-            Extern,
-            Register,
-            Unsigned
         }
 
         public static string TipoVariablePatron()
@@ -110,9 +95,7 @@ namespace Compilador___Projecto_Final
             {
                 patron = patron + name.ToLower() + "|";
             }
-
             patron = patron.Remove(patron.Length - 1);
-
             return patron;
         }
 
@@ -123,22 +106,7 @@ namespace Compilador___Projecto_Final
             {
                 patron = patron + name.ToLower() + "|";
             }
-
             patron = patron.Remove(patron.Length - 1);
-
-            return patron;
-        }
-
-        public static string TipoPalabraDefinicionPatron()
-        {
-            string patron = "";
-            foreach (string name in Enum.GetNames(typeof(PalabrasDefinicion)))
-            {
-                patron = patron + name.ToLower() + "|";
-            }
-
-            patron = patron.Remove(patron.Length - 1);
-
             return patron;
         }
     }
