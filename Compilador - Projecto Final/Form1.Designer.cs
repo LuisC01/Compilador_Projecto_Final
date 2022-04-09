@@ -1,7 +1,7 @@
 ﻿
 namespace Compilador___Projecto_Final
 {
-    partial class Form1
+    partial class Compilador
     {
         /// <summary>
         /// Required designer variable.
@@ -29,39 +29,25 @@ namespace Compilador___Projecto_Final
         /// </summary>
         private void InitializeComponent()
         {
-            this.BTNCOMPILAR = new System.Windows.Forms.Button();
             this.BTNANALIZADOR_LEXICO = new System.Windows.Forms.Button();
             this.BTNANALIZADORSEMANTICO = new System.Windows.Forms.Button();
             this.BTNANALIZADORSINTACTICO = new System.Windows.Forms.Button();
             this.dataGripTablaDeSimbolos = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Variable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox_Output = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox_Input = new System.Windows.Forms.TextBox();
             this.BTNCLEAR = new System.Windows.Forms.Button();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Variable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGripTablaDeSimbolos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // BTNCOMPILAR
-            // 
-            this.BTNCOMPILAR.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BTNCOMPILAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BTNCOMPILAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNCOMPILAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCOMPILAR.Location = new System.Drawing.Point(29, 9);
-            this.BTNCOMPILAR.Name = "BTNCOMPILAR";
-            this.BTNCOMPILAR.Size = new System.Drawing.Size(96, 33);
-            this.BTNCOMPILAR.TabIndex = 0;
-            this.BTNCOMPILAR.Text = "Compilar";
-            this.BTNCOMPILAR.UseVisualStyleBackColor = false;
             // 
             // BTNANALIZADOR_LEXICO
             // 
@@ -69,7 +55,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADOR_LEXICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADOR_LEXICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADOR_LEXICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADOR_LEXICO.Location = new System.Drawing.Point(157, 10);
+            this.BTNANALIZADOR_LEXICO.Location = new System.Drawing.Point(110, 12);
             this.BTNANALIZADOR_LEXICO.Name = "BTNANALIZADOR_LEXICO";
             this.BTNANALIZADOR_LEXICO.Size = new System.Drawing.Size(159, 31);
             this.BTNANALIZADOR_LEXICO.TabIndex = 1;
@@ -83,7 +69,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSEMANTICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADORSEMANTICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADORSEMANTICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADORSEMANTICO.Location = new System.Drawing.Point(345, 10);
+            this.BTNANALIZADORSEMANTICO.Location = new System.Drawing.Point(308, 12);
             this.BTNANALIZADORSEMANTICO.Name = "BTNANALIZADORSEMANTICO";
             this.BTNANALIZADORSEMANTICO.Size = new System.Drawing.Size(171, 31);
             this.BTNANALIZADORSEMANTICO.TabIndex = 2;
@@ -97,7 +83,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSINTACTICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADORSINTACTICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADORSINTACTICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADORSINTACTICO.Location = new System.Drawing.Point(540, 10);
+            this.BTNANALIZADORSINTACTICO.Location = new System.Drawing.Point(519, 12);
             this.BTNANALIZADORSINTACTICO.Name = "BTNANALIZADORSINTACTICO";
             this.BTNANALIZADORSINTACTICO.Size = new System.Drawing.Size(165, 32);
             this.BTNANALIZADORSINTACTICO.TabIndex = 3;
@@ -117,6 +103,34 @@ namespace Compilador___Projecto_Final
             this.dataGripTablaDeSimbolos.Name = "dataGripTablaDeSimbolos";
             this.dataGripTablaDeSimbolos.Size = new System.Drawing.Size(680, 150);
             this.dataGripTablaDeSimbolos.TabIndex = 5;
+            // 
+            // Codigo
+            // 
+            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Variable
+            // 
+            this.Variable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Variable.HeaderText = "Variable";
+            this.Variable.Name = "Variable";
+            this.Variable.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -171,7 +185,7 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCLEAR.Location = new System.Drawing.Point(730, 10);
+            this.BTNCLEAR.Location = new System.Drawing.Point(716, 11);
             this.BTNCLEAR.Name = "BTNCLEAR";
             this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
             this.BTNCLEAR.TabIndex = 9;
@@ -179,35 +193,7 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.UseVisualStyleBackColor = false;
             this.BTNCLEAR.Click += new System.EventHandler(this.BTNCLEAR_Click);
             // 
-            // Codigo
-            // 
-            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            // 
-            // Variable
-            // 
-            this.Variable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Variable.HeaderText = "Variable";
-            this.Variable.Name = "Variable";
-            this.Variable.ReadOnly = true;
-            // 
-            // Tipo
-            // 
-            this.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.ReadOnly = true;
-            // 
-            // Valor
-            // 
-            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            // 
-            // Form1
+            // Compilador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -219,9 +205,9 @@ namespace Compilador___Projecto_Final
             this.Controls.Add(this.BTNANALIZADORSINTACTICO);
             this.Controls.Add(this.BTNANALIZADORSEMANTICO);
             this.Controls.Add(this.BTNANALIZADOR_LEXICO);
-            this.Controls.Add(this.BTNCOMPILAR);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Compilador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Compilador";
             ((System.ComponentModel.ISupportInitialize)(this.dataGripTablaDeSimbolos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -233,8 +219,6 @@ namespace Compilador___Projecto_Final
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BTNCOMPILAR;
         private System.Windows.Forms.Button BTNANALIZADOR_LEXICO;
         private System.Windows.Forms.Button BTNANALIZADORSEMANTICO;
         private System.Windows.Forms.Button BTNANALIZADORSINTACTICO;

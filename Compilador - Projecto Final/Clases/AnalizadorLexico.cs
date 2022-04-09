@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Compilador___Projecto_Final
 {
     public class AnalizadorLexico
     {
-        /// <summary>
-        /// Recibe el codigo en texto y me regresa una lista de lexema
-        /// </summary>
-        /// <param name="codigoTexto">Este codigo debe venir sin comentarios y sin saltos</param>
-        /// <returns></returns>
         public List<Lexema> ExtraerLexemas(string codigoTexto)
         {
             string s = Enums.TipoVariablePatron();
             List<Lexema> lexemas = new List<Lexema>();
 
-            //TODO: Falta separar correctamente los tipos de operadores
             Regex r = new Regex(@"(?<" + Enums.TipoElemento.OperadorRelacional + @">(==|!=|>=|>|<=|<|\+=|\*=))" + "|" +
                                 @"(?<" + Enums.TipoElemento.OperadorLogico + @">(&&|!|\|\|))" + "|" +
                                 @"(?<" + Enums.TipoElemento.OperadorIncremental + @">(\+\+))" + "|" +
@@ -31,7 +23,7 @@ namespace Compilador___Projecto_Final
                                 @"(?<" + Enums.TipoElemento.Variable + ">[_A-Za-z_]+([0-9]+)?)" + "|" +
                                 @"(?<" + Enums.TipoElemento.Cadena + @">(@""(?:[^""]|"""")*""|""(?:\\.|[^\\""])*""))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Caracter + ">\'([^\'\\\\\\n]|\\\\.)\')" + "|" +
-                                @"(?<" + Enums.TipoElemento.OperadorAsignacion + ">(=|-=|%=))" + "|" + //TODO: Pendiente el += y *=
+                                @"(?<" + Enums.TipoElemento.OperadorAsignacion + ">(=|-=|%=))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Parentesis + @">[(|)])" + "|" +
                                 @"(?<" + Enums.TipoElemento.Llave + @">[{|}])" + "|" +
                                 @"(?<" + Enums.TipoElemento.Corchete + @">[\[|\]])" + "|" +
@@ -43,7 +35,7 @@ namespace Compilador___Projecto_Final
 
             while (m.Success)
             {
-                if (m.Groups[Enums.TipoElemento.OperadorAritmetico.ToString()].Success) //Si es un operador, procedemos a hacer cualquier otra cosa
+                if (m.Groups[Enums.TipoElemento.OperadorAritmetico.ToString()].Success)
                 {
                     lexemas.Add(new Lexema() { Texto = m.Value, TipoElemento = Enums.TipoElemento.OperadorAritmetico});
                 }
@@ -130,11 +122,6 @@ namespace Compilador___Projecto_Final
             return lexemas;
         }
 
-        /// <summary>
-        /// Toma un codigo y le retira los comentarios
-        /// </summary>
-        /// <param name="codigo"></param>
-        /// <returns></returns>
         public string RetirarComentarios(string codigo)
         {
             string comentariosBloque = @"/\*(.*?)\*/";
@@ -148,18 +135,13 @@ namespace Compilador___Projecto_Final
                 {
                     if (me.Value.StartsWith("/*") || me.Value.StartsWith("//"))
                         return me.Value.StartsWith("//") ? Environment.NewLine : "";
-                    // Se mantiene el string
+                    
                     return me.Value;
                 },
                 RegexOptions.Singleline);
             return newCode;
         }
 
-        /// <summary>
-        /// Toma un codigo y le retira los saltos de linea
-        /// </summary>
-        /// <param name="codigo"></param>
-        /// <returns></returns>
         public string RetirarSaltos(string codigo)
         {
             return codigo.Replace(Environment.NewLine, null);
