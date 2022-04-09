@@ -311,7 +311,7 @@ namespace Compilador___Projecto_Final
         public Bloque AnalizarBloqueFuncion(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            bloque.TipoBloque = Enums.TipoBloque.Funcion;
+            //bloque.TipoBloque = Enums.TipoBloque.Funcion;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -376,7 +376,7 @@ namespace Compilador___Projecto_Final
         public Bloque AnalizarFor(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            bloque.TipoBloque = Enums.TipoBloque.Estructura;
+            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -503,7 +503,7 @@ namespace Compilador___Projecto_Final
         public Bloque AnalizarWhile(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            bloque.TipoBloque = Enums.TipoBloque.Estructura;
+            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -588,7 +588,7 @@ namespace Compilador___Projecto_Final
         public Bloque AnalizarDoWhile(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            bloque.TipoBloque = Enums.TipoBloque.Estructura;
+            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -709,7 +709,7 @@ namespace Compilador___Projecto_Final
         public Bloque AnalizarIf(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            bloque.TipoBloque = Enums.TipoBloque.Estructura;
+            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -794,7 +794,7 @@ namespace Compilador___Projecto_Final
         public Bloque AnalizarElse(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            bloque.TipoBloque = Enums.TipoBloque.Estructura;
+            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -922,11 +922,11 @@ namespace Compilador___Projecto_Final
                 case Enums.TipoElemento.OperadorAsignacion:
                     return AplicarReglasAsignacion(indiceLexema, lexemas);
                     
-                case Enums.TipoElemento.OperadorMisc:
-                    return "";
+                //case Enums.TipoElemento.OperadorMisc:
+                    //return "";
                     
-                case Enums.TipoElemento.PalabraDefinicion:
-                    return "";
+                //case Enums.TipoElemento.PalabraDefinicion:
+                    //return "";
                     
                 case Enums.TipoElemento.OperadorTerminador:
                     return "";

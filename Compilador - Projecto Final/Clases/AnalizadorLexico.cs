@@ -27,7 +27,6 @@ namespace Compilador___Projecto_Final
                                 @"(?<" + Enums.TipoElemento.OperadorAritmetico + @">[+|\-|*|%|/])" + "|" + 
                                 @"(?<" + Enums.TipoElemento.TipoVariable + ">(" + Enums.TipoVariablePatron() + "))" + "|" +
                                 @"(?<" + Enums.TipoElemento.PalabraReservada + ">(" + Enums.TipoPalabraReservadaPatron() + "))" + "|" +
-                                @"(?<" + Enums.TipoElemento.PalabraDefinicion + ">(" + Enums.TipoPalabraDefinicionPatron() + "))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Numero + @">(\d+(\.\d+)?))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Variable + ">[_A-Za-z_]+([0-9]+)?)" + "|" +
                                 @"(?<" + Enums.TipoElemento.Cadena + @">(@""(?:[^""]|"""")*""|""(?:\\.|[^\\""])*""))" + "|" +
@@ -110,10 +109,6 @@ namespace Compilador___Projecto_Final
                 else if (m.Groups[Enums.TipoElemento.Coma.ToString()].Success)
                 {
                     lexemas.Add(new Lexema() { Texto = m.Value, TipoElemento = Enums.TipoElemento.Coma });
-                }
-                else if (m.Groups[Enums.TipoElemento.PalabraDefinicion.ToString()].Success)
-                {
-                    lexemas.Add(new Lexema() { Texto = m.Value, TipoElemento = Enums.TipoElemento.PalabraDefinicion });
                 }
                 else if (m.Groups[Enums.TipoElemento.OperadorIncremental.ToString()].Success)
                 {

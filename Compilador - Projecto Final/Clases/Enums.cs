@@ -141,7 +141,5 @@ namespace Compilador___Projecto_Final
 
             return patron;
         }
-
-
     }
 }

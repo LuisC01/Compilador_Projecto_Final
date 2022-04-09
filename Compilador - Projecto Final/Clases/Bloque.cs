@@ -16,7 +16,7 @@ namespace Compilador___Projecto_Final
             this.BloquesInterno = new List<Bloque>();
             this.Lexemas = new List<Lexema>();
         }
-        public Enums.TipoBloque TipoBloque { get; set; }
+        //public Enums.TipoBloque TipoBloque { get; set; }
 
         public List<Lexema> Lexemas { get; set; }
 

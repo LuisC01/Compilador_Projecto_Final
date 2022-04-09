@@ -36,11 +36,13 @@ namespace Compilador___Projecto_Final
         private void ProcesarBloque(Bloque bloque)
         {
             //Entra acá si estoy haciendo una declaracion
+            /*
             if (bloque.TipoBloque == Enums.TipoBloque.Estructura)
             {
              ProcesarEstructura(bloque);   
             }
-            else if (bloque.Lexemas[0].TipoElemento == Enums.TipoElemento.TipoVariable &&
+            */
+            if (bloque.Lexemas[0].TipoElemento == Enums.TipoElemento.TipoVariable &&
                 bloque.Lexemas[1].TipoElemento == Enums.TipoElemento.Variable && bloque.Lexemas[2].TipoElemento ==
                 Enums.TipoElemento.OperadorTerminador)
             {

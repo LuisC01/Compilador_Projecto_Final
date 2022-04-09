@@ -188,13 +188,6 @@ namespace Compilador___Projecto_Final
 
         private void tablaSimbolos_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
-
-
-        private void BTNCOMPILAR_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BTNANALIZADOR_LEXICO_Click(object sender, EventArgs e)
         {
             string codigo = textBox_Input.Text;

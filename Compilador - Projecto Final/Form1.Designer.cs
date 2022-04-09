@@ -62,7 +62,6 @@ namespace Compilador___Projecto_Final
             this.BTNCOMPILAR.TabIndex = 0;
             this.BTNCOMPILAR.Text = "Compilar";
             this.BTNCOMPILAR.UseVisualStyleBackColor = false;
-            this.BTNCOMPILAR.Click += new System.EventHandler(this.BTNCOMPILAR_Click);
             // 
             // BTNANALIZADOR_LEXICO
             // 

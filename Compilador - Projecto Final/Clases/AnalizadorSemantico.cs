@@ -44,7 +44,7 @@ namespace Compilador___Projecto_Final
                 }
             }
 
-            VerificarFuncionesRetorno(bloques);
+            //VerificarFuncionesRetorno(bloques);
         }
 
         #region Verificacion tipos
@@ -497,10 +497,10 @@ namespace Compilador___Projecto_Final
                     break;
                 case Enums.TipoElemento.OperadorAsignacion:
                     break;
-                case Enums.TipoElemento.OperadorMisc:
-                    break;
-                case Enums.TipoElemento.PalabraDefinicion:
-                    break;
+                //case Enums.TipoElemento.OperadorMisc:
+                  //  break;
+                //case Enums.TipoElemento.PalabraDefinicion:
+                  //  break;
                 case Enums.TipoElemento.OperadorTerminador:
                     break;
                 case Enums.TipoElemento.Parentesis:
@@ -515,9 +515,9 @@ namespace Compilador___Projecto_Final
                     break;
                 case Enums.TipoElemento.OperadorDecremental:
                     break;
-                case Enums.TipoElemento.Cadena:
-                    tipoVariable = Enums.TipoVariable.CharString;
-                    break;
+                //case Enums.TipoElemento.Cadena:
+                  //  tipoVariable = Enums.TipoVariable.CharString;
+                    //break;
                 case Enums.TipoElemento.Caracter:
                     tipoVariable = Enums.TipoVariable.Char;
                     break;
@@ -536,37 +536,37 @@ namespace Compilador___Projecto_Final
                 case Enums.TipoVariable.Char:
                     tipoElemento = Enums.TipoElemento.Caracter;
                     break;
-                case Enums.TipoVariable.UChar:
-                    break;
-                case Enums.TipoVariable.SChar:
-                    break;
+                //case Enums.TipoVariable.UChar:
+                  //  break;
+                //case Enums.TipoVariable.SChar:
+                  //  break;
                 case Enums.TipoVariable.Int:
                     tipoElemento = Enums.TipoElemento.Numero;
                     break;
-                case Enums.TipoVariable.UInt:
-                    break;
-                case Enums.TipoVariable.Short:
-                    break;
-                case Enums.TipoVariable.UShort:
-                    break;
-                case Enums.TipoVariable.Long:
-                    break;
-                case Enums.TipoVariable.ULong:
-                    break;
+               // case Enums.TipoVariable.UInt:
+                //    break;
+                //case Enums.TipoVariable.Short:
+                  //  break;
+                //case Enums.TipoVariable.UShort:
+                  //  break;
+                //case Enums.TipoVariable.Long:
+                  //  break;
+                //case Enums.TipoVariable.ULong:
+                    //break;
                 case Enums.TipoVariable.Float:
                     tipoElemento = Enums.TipoElemento.Numero;
                     break;
                 case Enums.TipoVariable.Double:
                     tipoElemento = Enums.TipoElemento.Numero;
                     break;
-                case Enums.TipoVariable.LongDouble:
-                    break;
+                //case Enums.TipoVariable.LongDouble:
+                  //  break;
                 case Enums.TipoVariable.Void:
 
                     break;
-                case Enums.TipoVariable.CharString:
-                    tipoElemento = Enums.TipoElemento.Cadena;
-                    break;
+                //case Enums.TipoVariable.CharString:
+                  //  tipoElemento = Enums.TipoElemento.Cadena;
+                    //break;
             }
             return tipoElemento;
         }
@@ -596,7 +596,7 @@ namespace Compilador___Projecto_Final
         }
 
         #endregion
-
+        /*
         public void VerificarFuncionesRetorno(List<Bloque> bloques)
         {
             //Filtro solo los bloques del tipo funcion
@@ -606,7 +606,7 @@ namespace Compilador___Projecto_Final
                 VerificarRetornoBloque(bloque);
             }
         }
-
+        */
         public void VerificarRetornoBloque(Bloque bloque)
         {
             if (bloque.BloquesInterno == null || bloque.BloquesInterno.Count == 0 ||
