@@ -144,6 +144,7 @@ namespace Compilador___Projecto_Final
             // 
             // textBox_Output
             // 
+            this.textBox_Output.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Output.Location = new System.Drawing.Point(6, 12);
             this.textBox_Output.Multiline = true;
             this.textBox_Output.Name = "textBox_Output";
@@ -173,6 +174,7 @@ namespace Compilador___Projecto_Final
             // textBox_Input
             // 
             this.textBox_Input.AcceptsReturn = true;
+            this.textBox_Input.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Input.Location = new System.Drawing.Point(6, 12);
             this.textBox_Input.Multiline = true;
             this.textBox_Input.Name = "textBox_Input";

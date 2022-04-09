@@ -13,11 +13,13 @@ namespace Compilador___Projecto_Final
 
         public TablaSimbolos TablaSimbolos { get; set; }
 
+
         public void ConstruirTablaSimbolos(List<Lexema> lexemas)
         {
             TablaSimbolos = new TablaSimbolos();
             TablaSimbolos.ProcesarListadoLexemas(lexemas);
         }
+        
 
         public string AplicarReglasTipoVar(int indice, List<Lexema> lexemas)
         {
@@ -67,6 +69,7 @@ namespace Compilador___Projecto_Final
             return mensajeError;
         }
 
+
         public string AplicarReglasVariable(int indice, List<Lexema> lexemas)
         {
             string mensajeError = "";
@@ -101,6 +104,7 @@ namespace Compilador___Projecto_Final
 
         }
 
+
         public string AplicarReglasAsignacion(int indice, List<Lexema> lexemas)
         {
             string mensajeError = "";
@@ -129,6 +133,7 @@ namespace Compilador___Projecto_Final
             }
             return mensajeError;
         }
+
 
         public string AplicarReglasOperadorAritmetico(int indice, List<Lexema> lexemas)
         {
@@ -161,10 +166,32 @@ namespace Compilador___Projecto_Final
             return mensajeError;
         }
 
+
         public bool EsUltimoElemento(int indice, List<Lexema> lexemas)
         {
             return indice == lexemas.Count - 1;
         }
+
+        //
+        public List<string> ExtraerErroresBloques(List<Bloque> bloques)
+        {
+            List<string> errores = new List<string>();
+            foreach (Bloque bloque in bloques)
+            {
+                if (!string.IsNullOrEmpty(bloque.Error))
+                {
+                    errores.Add(bloque.ErrorCompleto());
+                }
+
+                List<string> erroresParciales = bloque.ErroresHijo();
+                if (erroresParciales != null && erroresParciales.Count > 0)
+                {
+                    errores.AddRange(erroresParciales.Where(y => !string.IsNullOrEmpty(y)));
+                }
+            }
+            return errores;
+        }
+
 
         public List<Bloque> RealizarAnalisisSintax(List<Lexema> lexemas, ref int posCursor, int indiceStop = 0, int finBloquePadre = 0)
         {
@@ -177,6 +204,7 @@ namespace Compilador___Projecto_Final
 
             return bloques;
         }
+
 
         public Bloque ObtenerSiguienteBloque(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
@@ -221,6 +249,7 @@ namespace Compilador___Projecto_Final
             return bloque;
         }
 
+
         public Bloque ProcesarTipoVariable(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             if (posCursor + 2 < lexemas.Count - 1 && lexemas[posCursor + 2].Texto == "(")
@@ -254,6 +283,7 @@ namespace Compilador___Projecto_Final
                 return AnalizarSentencia(lexemas, ref posCursor, finBloquePadre);
             }
         }
+
 
         public Bloque ProcesarVariable(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
@@ -558,6 +588,7 @@ namespace Compilador___Projecto_Final
             return bloque;
         }
 
+
         public Bloque AnalizarSentencia(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             int indicePuntoComa = IndicePuntoComa(lexemas, posCursor);
@@ -601,6 +632,27 @@ namespace Compilador___Projecto_Final
             return bloque;
         }
 
+
+        public Bloque BloqueError(List<Lexema> lexemas, string mensajeError, ref int posCursor, int finBloquePadre)
+        {
+            Bloque bloque = new Bloque()
+            {
+                Incia = posCursor,
+                Error = mensajeError
+
+            };
+            finBloquePadre = finBloquePadre == 0 ? lexemas.Count : finBloquePadre;
+
+            for (int i = posCursor; i < finBloquePadre; i++)
+            {
+                bloque.Lexemas.Add(lexemas[i]);
+                posCursor++;
+            }
+
+            return bloque;
+        }
+
+
         public string BuscarError(Lexema lexema, int indiceLexema, List<Lexema> lexemas)
         {
             switch (lexema.TipoElemento)
@@ -642,6 +694,7 @@ namespace Compilador___Projecto_Final
             return "";
         }
 
+
         public bool DelimitadoresBalanceados(List<Lexema> lexemas, string simbolApertura, string simbolCierre, int indiceInicial, int indiceFinal)
         {
             int apertura = 0;
@@ -661,6 +714,7 @@ namespace Compilador___Projecto_Final
 
             return apertura == cierre;
         }
+
 
         public int IndiceBalance(List<Lexema> lexemas, int posCursor, string simboloApertura, string simboloCierre)
         {
@@ -699,6 +753,7 @@ namespace Compilador___Projecto_Final
             return posCursor;
         }
 
+
         public int IndicePuntoComa(List<Lexema> lexemas, int posCursor)
         {
             bool salir = false;
@@ -725,26 +780,8 @@ namespace Compilador___Projecto_Final
 
             return posCursor;
         }
-
-        public Bloque BloqueError(List<Lexema> lexemas, string mensajeError, ref int posCursor, int finBloquePadre)
-        {
-            Bloque bloque = new Bloque()
-            {
-                Incia = posCursor,
-                Error = mensajeError
-
-            };
-            finBloquePadre = finBloquePadre == 0 ? lexemas.Count : finBloquePadre;
-
-            for (int i = posCursor; i < finBloquePadre; i++)
-            {
-                bloque.Lexemas.Add(lexemas[i]);
-                posCursor++;
-            }
-
-            return bloque;
-        }
-
+        
+        
         public bool PuntoComaCorrecto(List<Lexema> lexemas, int posCursor, int indicePuntoComa)
         {
             int asignaciones = 0;
@@ -775,6 +812,7 @@ namespace Compilador___Projecto_Final
 
             return true;
         }
+
 
         public bool InitForCorrecto(List<Lexema> lexemas, int posCursor, int indicePuntoComa)
         {
@@ -812,6 +850,7 @@ namespace Compilador___Projecto_Final
             }
         }
 
+
         public bool CondicionEstructuraCorrecta(List<Lexema> lexemas, int posCursor, int indiceFin)
         {
             if ((lexemas[posCursor].TipoElemento == Enums.TipoElemento.Numero ||
@@ -827,6 +866,7 @@ namespace Compilador___Projecto_Final
             return false;
         }
 
+
         public bool IncrementoForCorrecto(List<Lexema> lexemas, int posCursor, int indiceParentesis)
         {
             if (indiceParentesis - posCursor == 2)
@@ -836,13 +876,11 @@ namespace Compilador___Projecto_Final
                 {
                     return true;
                 }
-
                 if (lexemas[posCursor].TipoElemento == Enums.TipoElemento.Variable && lexemas[posCursor + 1].TipoElemento ==
                     Enums.TipoElemento.OperadorDecremental)
                 {
                     return true;
                 }
-
                 return false;
             }
             else if (indiceParentesis - posCursor == 5)
@@ -855,30 +893,9 @@ namespace Compilador___Projecto_Final
                 {
                     return true;
                 }
-
                 return false;
             }
-
             return false;
-        }
-
-        public List<string> ExtraerErroresBloques(List<Bloque> bloques)
-        {
-            List<string> errores = new List<string>();
-            foreach (Bloque bloque in bloques)
-            {
-                if (!string.IsNullOrEmpty(bloque.Error))
-                {
-                    errores.Add(bloque.ErrorCompleto());
-                }
-
-                List<string> erroresParciales = bloque.ErroresHijo();
-                if (erroresParciales != null && erroresParciales.Count > 0)
-                {
-                    errores.AddRange(erroresParciales.Where(y => !string.IsNullOrEmpty(y)));
-                }
-            }
-            return errores;
         }
     }
 }

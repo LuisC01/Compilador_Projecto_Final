@@ -16,14 +16,14 @@ namespace Compilador___Projecto_Final
                                 @"(?<" + Enums.TipoElemento.OperadorLogico + @">(&&|!|\|\|))" + "|" +
                                 @"(?<" + Enums.TipoElemento.OperadorIncremental + @">(\+\+))" + "|" +
                                 @"(?<" + Enums.TipoElemento.OperadorDecremental + @">(--))" + "|" +
-                                @"(?<" + Enums.TipoElemento.OperadorAritmetico + @">[+|\-|*|%|/])" + "|" + 
+                                @"(?<" + Enums.TipoElemento.OperadorAritmetico + @">[+|\-|*|/])" + "|" + 
                                 @"(?<" + Enums.TipoElemento.TipoVariable + ">(" + Enums.TipoVariablePatron() + "))" + "|" +
                                 @"(?<" + Enums.TipoElemento.PalabraReservada + ">(" + Enums.TipoPalabraReservadaPatron() + "))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Numero + @">(\d+(\.\d+)?))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Variable + ">[_A-Za-z_]+([0-9]+)?)" + "|" +
                                 @"(?<" + Enums.TipoElemento.Cadena + @">(@""(?:[^""]|"""")*""|""(?:\\.|[^\\""])*""))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Caracter + ">\'([^\'\\\\\\n]|\\\\.)\')" + "|" +
-                                @"(?<" + Enums.TipoElemento.OperadorAsignacion + ">(=|-=|%=))" + "|" +
+                                @"(?<" + Enums.TipoElemento.OperadorAsignacion + ">(=|-=))" + "|" +
                                 @"(?<" + Enums.TipoElemento.Parentesis + @">[(|)])" + "|" +
                                 @"(?<" + Enums.TipoElemento.Llave + @">[{|}])" + "|" +
                                 @"(?<" + Enums.TipoElemento.Corchete + @">[\[|\]])" + "|" +
@@ -37,7 +37,7 @@ namespace Compilador___Projecto_Final
             {
                 if (m.Groups[Enums.TipoElemento.OperadorAritmetico.ToString()].Success)
                 {
-                    lexemas.Add(new Lexema() { Texto = m.Value, TipoElemento = Enums.TipoElemento.OperadorAritmetico});
+                    lexemas.Add(new Lexema() { Texto = m.Value, TipoElemento = Enums.TipoElemento.OperadorAritmetico });
                 }
                 else if (m.Groups[Enums.TipoElemento.TipoVariable.ToString()].Success)
                 {
@@ -122,25 +122,6 @@ namespace Compilador___Projecto_Final
             return lexemas;
         }
 
-        public string RetirarComentarios(string codigo)
-        {
-            string comentariosBloque = @"/\*(.*?)\*/";
-            string comentariosLinea = @"//(.*?)\r?\n";
-            string strings = @"""((\\[^\n]|[^""\n])*)""";
-            string verbatimStrings = @"@(""[^""]*"")+";
-
-            string newCode = Regex.Replace(codigo,
-                comentariosBloque + "|" + comentariosLinea + "|" + strings + "|" + verbatimStrings,
-                me =>
-                {
-                    if (me.Value.StartsWith("/*") || me.Value.StartsWith("//"))
-                        return me.Value.StartsWith("//") ? Environment.NewLine : "";
-                    
-                    return me.Value;
-                },
-                RegexOptions.Singleline);
-            return newCode;
-        }
 
         public string RetirarSaltos(string codigo)
         {
