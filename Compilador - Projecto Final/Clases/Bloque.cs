@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procesos
+namespace Compilador___Projecto_Final
 {
     /// <summary>
     /// Bloque de codigo, que puede ser de tipo Sentencia o Tipo estructura
