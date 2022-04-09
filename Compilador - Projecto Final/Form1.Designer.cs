@@ -52,7 +52,7 @@ namespace Compilador___Projecto_Final
             this.BTNCOMPILAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNCOMPILAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCOMPILAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCOMPILAR.Location = new System.Drawing.Point(33, 9);
+            this.BTNCOMPILAR.Location = new System.Drawing.Point(29, 9);
             this.BTNCOMPILAR.Name = "BTNCOMPILAR";
             this.BTNCOMPILAR.Size = new System.Drawing.Size(96, 33);
             this.BTNCOMPILAR.TabIndex = 0;
@@ -66,7 +66,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADOR_LEXICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADOR_LEXICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADOR_LEXICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADOR_LEXICO.Location = new System.Drawing.Point(160, 10);
+            this.BTNANALIZADOR_LEXICO.Location = new System.Drawing.Point(157, 10);
             this.BTNANALIZADOR_LEXICO.Name = "BTNANALIZADOR_LEXICO";
             this.BTNANALIZADOR_LEXICO.Size = new System.Drawing.Size(159, 31);
             this.BTNANALIZADOR_LEXICO.TabIndex = 1;
@@ -80,7 +80,7 @@ namespace Compilador___Projecto_Final
             this.BTNANALIZADORSEMANTICO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNANALIZADORSEMANTICO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNANALIZADORSEMANTICO.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNANALIZADORSEMANTICO.Location = new System.Drawing.Point(346, 10);
+            this.BTNANALIZADORSEMANTICO.Location = new System.Drawing.Point(345, 10);
             this.BTNANALIZADORSEMANTICO.Name = "BTNANALIZADORSEMANTICO";
             this.BTNANALIZADORSEMANTICO.Size = new System.Drawing.Size(171, 31);
             this.BTNANALIZADORSEMANTICO.TabIndex = 2;
@@ -113,7 +113,7 @@ namespace Compilador___Projecto_Final
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Location = new System.Drawing.Point(421, 56);
+            this.groupBox1.Location = new System.Drawing.Point(420, 56);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(391, 333);
             this.groupBox1.TabIndex = 6;
@@ -123,7 +123,7 @@ namespace Compilador___Projecto_Final
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(55, 398);
+            this.groupBox2.Location = new System.Drawing.Point(60, 399);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(692, 171);
             this.groupBox2.TabIndex = 7;
@@ -135,7 +135,7 @@ namespace Compilador___Projecto_Final
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Location = new System.Drawing.Point(12, 56);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(387, 333);
+            this.groupBox3.Size = new System.Drawing.Size(388, 333);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input";
@@ -146,7 +146,7 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCLEAR.Location = new System.Drawing.Point(722, 10);
+            this.BTNCLEAR.Location = new System.Drawing.Point(728, 10);
             this.BTNCLEAR.Name = "BTNCLEAR";
             this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
             this.BTNCLEAR.TabIndex = 9;
@@ -160,7 +160,7 @@ namespace Compilador___Projecto_Final
             this.textBox1.Location = new System.Drawing.Point(6, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(375, 315);
+            this.textBox1.Size = new System.Drawing.Size(376, 315);
             this.textBox1.TabIndex = 5;
             // 
             // textBox2
