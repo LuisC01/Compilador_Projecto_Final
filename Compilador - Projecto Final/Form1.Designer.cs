@@ -163,7 +163,7 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTNCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCLEAR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BTNCLEAR.Location = new System.Drawing.Point(711, 9);
+            this.BTNCLEAR.Location = new System.Drawing.Point(730, 10);
             this.BTNCLEAR.Name = "BTNCLEAR";
             this.BTNCLEAR.Size = new System.Drawing.Size(75, 32);
             this.BTNCLEAR.TabIndex = 9;
