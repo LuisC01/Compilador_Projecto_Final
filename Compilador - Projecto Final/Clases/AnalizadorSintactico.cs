@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Compilador___Projecto_Final
 {
@@ -21,13 +19,11 @@ namespace Compilador___Projecto_Final
             TablaSimbolos.ProcesarListadoLexemas(lexemas);
         }
 
-        #region Reglas
-
         public string AplicarReglasTipoVar(int indice, List<Lexema> lexemas)
         {
             string mensajeError = "";
-            Lexema lexema = lexemas[indice]; //Saco el elemento para el cual voy a analizar
-            if (lexema.TipoElemento != Enums.TipoElemento.TipoVariable) //Si no es del tipo var, exploto
+            Lexema lexema = lexemas[indice];
+            if (lexema.TipoElemento != Enums.TipoElemento.TipoVariable)
             {
                 throw new ArgumentException("El tipo de elemento no es del tipo identificador de tipeo");
             }
@@ -74,8 +70,8 @@ namespace Compilador___Projecto_Final
         public string AplicarReglasVariable(int indice, List<Lexema> lexemas)
         {
             string mensajeError = "";
-            Lexema lexema = lexemas[indice]; //Saco el elemento para el cual voy a analizar
-            if (lexema.TipoElemento != Enums.TipoElemento.Variable) //Si no es del tipo var, exploto
+            Lexema lexema = lexemas[indice];
+            if (lexema.TipoElemento != Enums.TipoElemento.Variable)
             {
                 throw new ArgumentException("El tipo de elemento no es del tipo variable");
             }
@@ -108,8 +104,8 @@ namespace Compilador___Projecto_Final
         public string AplicarReglasAsignacion(int indice, List<Lexema> lexemas)
         {
             string mensajeError = "";
-            Lexema lexema = lexemas[indice]; //Saco el elemento para el cual voy a analizar
-            if (lexema.TipoElemento != Enums.TipoElemento.OperadorAsignacion) //Si no es del tipo var, exploto
+            Lexema lexema = lexemas[indice];
+            if (lexema.TipoElemento != Enums.TipoElemento.OperadorAsignacion)
             {
                 throw new ArgumentException("El tipo de elemento no es del tipo operador asignacion");
             }
@@ -137,8 +133,8 @@ namespace Compilador___Projecto_Final
         public string AplicarReglasOperadorAritmetico(int indice, List<Lexema> lexemas)
         {
             string mensajeError = "";
-            Lexema lexema = lexemas[indice]; //Saco el elemento para el cual voy a analizar
-            if (lexema.TipoElemento != Enums.TipoElemento.OperadorAritmetico) //Si no es del tipo var, exploto
+            Lexema lexema = lexemas[indice];
+            if (lexema.TipoElemento != Enums.TipoElemento.OperadorAritmetico)
             {
                 throw new ArgumentException("El tipo de elemento no es del tipo operador aritmetico");
             }
@@ -155,7 +151,7 @@ namespace Compilador___Projecto_Final
                      lexemaSiguiente.TipoElemento != Enums.TipoElemento.Variable &&
                      lexemaSiguiente.TipoElemento != Enums.TipoElemento.Parentesis))
                 {
-                    mensajeError = "Sintaxis incorrecta, uso inadecuado del operador. Elemento: " +"\""+ lexema.Texto + "\"";
+                    mensajeError = "Sintaxis incorrecta, uso inadecuado del operador. Elemento: " + "\"" + lexema.Texto + "\"";
                 }
             }
             else
@@ -170,27 +166,24 @@ namespace Compilador___Projecto_Final
             return indice == lexemas.Count - 1;
         }
 
-        #endregion
-
-        public List<Bloque> RealizarAnalisisSintax(List<Lexema> lexemas,ref int posCursor, int indiceStop = 0, int finBloquePadre = 0)
+        public List<Bloque> RealizarAnalisisSintax(List<Lexema> lexemas, ref int posCursor, int indiceStop = 0, int finBloquePadre = 0)
         {
             List<Bloque> bloques = new List<Bloque>();
 
             while (posCursor < indiceStop)
             {
-                bloques.Add(ObtenerSiguienteBloque(lexemas,ref posCursor, finBloquePadre));
+                bloques.Add(ObtenerSiguienteBloque(lexemas, ref posCursor, finBloquePadre));
             }
 
             return bloques;
         }
 
-        public Bloque ObtenerSiguienteBloque(List<Lexema> lexemas,ref int posCursor, int finBloquePadre)
+        public Bloque ObtenerSiguienteBloque(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //Si el elemento leido es del tipo int,float,char, etc
+            
             if (lexemas[posCursor].TipoElemento == Enums.TipoElemento.TipoVariable)
             {
-                //Debo verficar que si se trata de una sentencia o de una funcion
                 if (lexemas[posCursor + 1].TipoElemento == Enums.TipoElemento.Variable)
                 {
                     bloque = ProcesarTipoVariable(lexemas, ref posCursor, finBloquePadre);
@@ -200,7 +193,6 @@ namespace Compilador___Projecto_Final
                     bloque = BloqueError(lexemas, "Se esperaba una declaración despues de " + lexemas[posCursor].Texto,
                         ref posCursor, finBloquePadre);
                 }
-                
             }
             else if (lexemas[posCursor].TipoElemento == Enums.TipoElemento.Variable)
             {
@@ -237,16 +229,12 @@ namespace Compilador___Projecto_Final
                 bloque = AnalizarElse(lexemas, ref posCursor, finBloquePadre);
             }
 
-
             return bloque;
         }
 
-        #region Procesador de sintaxis
-
         public Bloque ProcesarTipoVariable(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
-
-            if (posCursor + 2 < lexemas.Count - 1 && lexemas[posCursor + 2].Texto == "(") //Se trata de una funcion
+            if (posCursor + 2 < lexemas.Count - 1 && lexemas[posCursor + 2].Texto == "(")
             {
                 int indiceBalance = IndiceBalance(lexemas, posCursor + 3, "(", ")");
                 if (indiceBalance == -1)
@@ -267,8 +255,6 @@ namespace Compilador___Projecto_Final
                 }
 
                 return BloqueError(lexemas, "Error en la forma de llamar/construir una funcion", ref posCursor, finBloquePadre);
-
-
             }
             else if (posCursor + 2 < lexemas.Count - 1 && lexemas[posCursor + 2].TipoElemento == Enums.TipoElemento.OperadorAsignacion)
             {
@@ -276,7 +262,6 @@ namespace Compilador___Projecto_Final
             }
             else
             {
-                //Se trata de una sentencia
                 return AnalizarSentencia(lexemas, ref posCursor, finBloquePadre);
             }
         }
@@ -290,7 +275,6 @@ namespace Compilador___Projecto_Final
                 {
                     Incia = posCursor,
                     Error = "Sentencia de tipo variable mal construida, faltan ;"
-
                 };
                 posCursor++;
                 return bloqueR;
@@ -303,15 +287,12 @@ namespace Compilador___Projecto_Final
                 return AnalizarSentencia(lexemas, ref posCursor, finBloquePadre);
             }
 
-            return BloqueError(lexemas,
-                "Se esperaba un simbolo de asignacion pero se encontro: " + lexemas[posCursor].Texto, ref posCursor,
-                finBloquePadre);
+            return BloqueError(lexemas, "Se esperaba un simbolo de asignacion pero se encontro: " + lexemas[posCursor].Texto, ref posCursor, finBloquePadre);
         }
 
         public Bloque AnalizarBloqueFuncion(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //bloque.TipoBloque = Enums.TipoBloque.Funcion;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -323,7 +304,7 @@ namespace Compilador___Projecto_Final
                 if (lexemas.FirstOrDefault(x => x.Texto == ")") != null)
                 {
                     int indexFinParen = IndiceBalance(lexemas, posCursor + 1, "(", ")");
-                    //Leo hasta el parentesis
+
                     for (int i = posCursor; i <= indexFinParen; i++)
                     {
                         bloque.Lexemas.Add(lexemas[posCursor]);
@@ -334,12 +315,10 @@ namespace Compilador___Projecto_Final
                     {
                         bloque.Lexemas.Add(lexemas[posCursor]);
                         posCursor++;
-
-                        //Debo mandar a leer mas bloques
                         int indexBalance = IndiceBalance(lexemas, posCursor, "{", "}");
-                        if (indexBalance != -1) //Entonces esta balanceada
-                        {
 
+                        if (indexBalance != -1)
+                        {
                             bloque.BloquesInterno = RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
                             bloque.Finaliza = posCursor;
                             bloque.Lexemas.Add(lexemas[posCursor]);
@@ -349,9 +328,7 @@ namespace Compilador___Projecto_Final
                         {
                             bloque.Error = "Se esperaba cierre de funcion \"}\"";
                         }
-
                     }
-
                     else
                     {
                         bloque.Error = "Se esperaba {";
@@ -367,33 +344,25 @@ namespace Compilador___Projecto_Final
                 bloque.Error = "Se esperaba (";
             }
 
-
-
-
             return bloque;
         }
 
         public Bloque AnalizarFor(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
 
             if (lexemas.ElementAtOrDefault(posCursor) != null && lexemas[posCursor].Texto == "(")
             {
-
                 if (lexemas.FirstOrDefault(x => x.Texto == ")") != null)
                 {
                     int indexFinParen = IndiceBalance(lexemas, posCursor + 1, "(", ")");
-
-                    //Validar estructura del for
                     int indicePrimerPuntoComa = IndicePuntoComa(lexemas, posCursor);
+
                     if (indicePrimerPuntoComa != -1 && InitForCorrecto(lexemas, posCursor, indicePrimerPuntoComa))
                     {
-
-                        //Leo hasta el primer punto coma
                         for (int i = posCursor; i <= indicePrimerPuntoComa; i++)
                         {
                             bloque.Lexemas.Add(lexemas[posCursor]);
@@ -402,11 +371,8 @@ namespace Compilador___Projecto_Final
 
                         int indiceSeguntoPuntoComa = IndicePuntoComa(lexemas, posCursor);
 
-                        if (indiceSeguntoPuntoComa != -1 &&
-                            CondicionEstructuraCorrecta(lexemas, posCursor, indiceSeguntoPuntoComa))
+                        if (indiceSeguntoPuntoComa != -1 && CondicionEstructuraCorrecta(lexemas, posCursor, indiceSeguntoPuntoComa))
                         {
-
-                            //Leo hasta el segundo punto coma
                             for (int i = posCursor; i <= indiceSeguntoPuntoComa; i++)
                             {
                                 bloque.Lexemas.Add(lexemas[posCursor]);
@@ -415,8 +381,6 @@ namespace Compilador___Projecto_Final
 
                             if (IncrementoForCorrecto(lexemas, posCursor, indexFinParen))
                             {
-
-                                //Leo hasta el parentesis
                                 for (int i = posCursor; i <= indexFinParen; i++)
                                 {
                                     bloque.Lexemas.Add(lexemas[posCursor]);
@@ -427,14 +391,11 @@ namespace Compilador___Projecto_Final
                                 {
                                     bloque.Lexemas.Add(lexemas[posCursor]);
                                     posCursor++;
-
-                                    //Debo mandar a leer mas bloques
                                     int indexBalance = IndiceBalance(lexemas, posCursor, "{", "}");
-                                    if (indexBalance != -1) //Entonces esta balanceada
-                                    {
 
-                                        bloque.BloquesInterno =
-                                            RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
+                                    if (indexBalance != -1)
+                                    {
+                                        bloque.BloquesInterno = RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
                                         bloque.Finaliza = posCursor;
                                         bloque.Lexemas.Add(lexemas[posCursor]);
                                         posCursor++;
@@ -443,9 +404,7 @@ namespace Compilador___Projecto_Final
                                     {
                                         bloque.Error = "Se esperaba cierre de funcion \"}\"";
                                     }
-
                                 }
-
                                 else
                                 {
                                     bloque.Error = "Se esperaba {";
@@ -455,24 +414,16 @@ namespace Compilador___Projecto_Final
                             {
                                 bloque.Error = "Estructura del for incorrecta, condicion de incremento incorrecta";
                             }
-
-
-
                         }
                         else
                         {
                             bloque.Error = "Estructura del for incorrecta, condicion del for incorrecta";
                         }
-
                     }
                     else
                     {
                         bloque.Error = "Estructura del for incorrecta, inicializador del for incorrecto";
                     }
-
-
-
-
                 }
                 else
                 {
@@ -495,30 +446,26 @@ namespace Compilador___Projecto_Final
                 }
             }
 
-
             return bloque;
-
         }
 
         public Bloque AnalizarWhile(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
 
             if (lexemas[posCursor].Texto == "(")
             {
-
                 if (lexemas.FirstOrDefault(x => x.Texto == ")") != null)
                 {
                     bloque.Lexemas.Add(lexemas[posCursor]);
                     posCursor++;
                     int indexFinParen = IndiceBalance(lexemas, posCursor + 1, "(", ")");
+
                     if (CondicionEstructuraCorrecta(lexemas, posCursor, indexFinParen))
                     {
-                        //Leo hasta el parentesis
                         for (int i = posCursor; i <= indexFinParen; i++)
                         {
                             bloque.Lexemas.Add(lexemas[posCursor]);
@@ -529,14 +476,11 @@ namespace Compilador___Projecto_Final
                         {
                             bloque.Lexemas.Add(lexemas[posCursor]);
                             posCursor++;
-
-                            //Debo mandar a leer mas bloques
                             int indexBalance = IndiceBalance(lexemas, posCursor, "{", "}");
-                            if (indexBalance != -1) //Entonces esta balanceada
-                            {
 
-                                bloque.BloquesInterno =
-                                    RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
+                            if (indexBalance != -1)
+                            {
+                                bloque.BloquesInterno = RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
                                 bloque.Finaliza = posCursor;
                                 bloque.Lexemas.Add(lexemas[posCursor]);
                                 posCursor++;
@@ -545,9 +489,7 @@ namespace Compilador___Projecto_Final
                             {
                                 bloque.Error = "Se esperaba cierre de funcion \"}\"";
                             }
-
                         }
-
                         else
                         {
                             bloque.Error = "Se esperaba \"{\"";
@@ -557,7 +499,6 @@ namespace Compilador___Projecto_Final
                     {
                         bloque.Error = "La condicion del while es incorrecta";
                     }
-                    
                 }
                 else
                 {
@@ -579,16 +520,12 @@ namespace Compilador___Projecto_Final
                     posCursor++;
                 }
             }
-
-
             return bloque;
-
         }
 
         public Bloque AnalizarDoWhile(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
@@ -598,15 +535,11 @@ namespace Compilador___Projecto_Final
                 bloque.Lexemas.Add(lexemas[posCursor]);
                 posCursor++;
 
-                //Debo mandar a leer mas bloques
                 int indexBalance = IndiceBalance(lexemas, posCursor, "{", "}");
-                if (indexBalance != -1) //Entonces esta balanceada
+                if (indexBalance != -1)
                 {
+                    bloque.BloquesInterno = RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
 
-                    bloque.BloquesInterno =
-                        RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
-
-                    //Procedo a leer el while
                     if (lexemas[posCursor].Texto == "}")
                     {
                         bloque.Lexemas.Add(lexemas[posCursor]);
@@ -616,17 +549,17 @@ namespace Compilador___Projecto_Final
                         {
                             bloque.Lexemas.Add(lexemas[posCursor]);
                             posCursor++;
+
                             if (lexemas[posCursor].Texto == "(")
                             {
-
                                 if (lexemas.FirstOrDefault(x => x.Texto == ")") != null)
                                 {
                                     bloque.Lexemas.Add(lexemas[posCursor]);
                                     posCursor++;
                                     int indexFinParen = IndiceBalance(lexemas, posCursor + 1, "(", ")");
+
                                     if (CondicionEstructuraCorrecta(lexemas, posCursor, indexFinParen))
                                     {
-                                        //Leo hasta el parentesis
                                         for (int i = posCursor; i <= indexFinParen; i++)
                                         {
                                             bloque.Lexemas.Add(lexemas[posCursor]);
@@ -638,19 +571,16 @@ namespace Compilador___Projecto_Final
                                             bloque.Lexemas.Add(lexemas[posCursor]);
                                             bloque.Finaliza = posCursor;
                                             posCursor++;
-                                            
                                         }
                                         else
                                         {
                                             bloque.Error = "La sentencia do...while requiere terminar con \";\"";
                                         }
-                                       
                                     }
                                     else
                                     {
                                         bloque.Error = "La condicion del while es incorrecta";
                                     }
-
                                 }
                                 else
                                 {
@@ -665,24 +595,17 @@ namespace Compilador___Projecto_Final
                         else
                         {
                             bloque.Error = "Estructura do...while incorrecta, falta la condicion \"while\" ";
-
                         }
-
-
-
                     }
                     else
                     {
                         bloque.Error = "Se esperaba cierre de funcion \"}\"";
                     }
-                    
-                    
                 }
                 else
                 {
                     bloque.Error = "Se esperaba cierre de funcion \"}\"";
                 }
-
             }
 
             else
@@ -700,23 +623,18 @@ namespace Compilador___Projecto_Final
                     posCursor++;
                 }
             }
-
-
             return bloque;
-
         }
 
         public Bloque AnalizarIf(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
 
             if (lexemas[posCursor].Texto == "(")
             {
-
                 if (lexemas.FirstOrDefault(x => x.Texto == ")") != null)
                 {
                     bloque.Lexemas.Add(lexemas[posCursor]);
@@ -724,7 +642,6 @@ namespace Compilador___Projecto_Final
                     int indexFinParen = IndiceBalance(lexemas, posCursor + 1, "(", ")");
                     if (CondicionEstructuraCorrecta(lexemas, posCursor, indexFinParen))
                     {
-                        //Leo hasta el parentesis
                         for (int i = posCursor; i <= indexFinParen; i++)
                         {
                             bloque.Lexemas.Add(lexemas[posCursor]);
@@ -735,14 +652,11 @@ namespace Compilador___Projecto_Final
                         {
                             bloque.Lexemas.Add(lexemas[posCursor]);
                             posCursor++;
-
-                            //Debo mandar a leer mas bloques
                             int indexBalance = IndiceBalance(lexemas, posCursor, "{", "}");
-                            if (indexBalance != -1) //Entonces esta balanceada
-                            {
 
-                                bloque.BloquesInterno =
-                                    RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
+                            if (indexBalance != -1)
+                            {
+                                bloque.BloquesInterno = RealizarAnalisisSintax(lexemas, ref posCursor, indexBalance - 1, indexBalance);
                                 bloque.Finaliza = posCursor;
                                 bloque.Lexemas.Add(lexemas[posCursor]);
                                 posCursor++;
@@ -751,9 +665,7 @@ namespace Compilador___Projecto_Final
                             {
                                 bloque.Error = "Se esperaba cierre de funcion \"}\"";
                             }
-
                         }
-
                         else
                         {
                             bloque.Error = "Se esperaba \"{\"";
@@ -785,31 +697,23 @@ namespace Compilador___Projecto_Final
                     posCursor++;
                 }
             }
-
-
             return bloque;
-
         }
 
         public Bloque AnalizarElse(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
             Bloque bloque = new Bloque();
-            //bloque.TipoBloque = Enums.TipoBloque.Estructura;
             bloque.Incia = posCursor;
             bloque.Lexemas.Add(lexemas[posCursor]);
             posCursor++;
-
-
-            //Hay que ir a ver que haya un if justo arriba del else
 
             if (lexemas[posCursor].Texto == "{")
             {
                 bloque.Lexemas.Add(lexemas[posCursor]);
                 posCursor++;
-
-                //Debo mandar a leer mas bloques
                 int indexBalance = IndiceBalance(lexemas, posCursor, "{", "}");
-                if (indexBalance != -1) //Entonces esta balanceada
+
+                if (indexBalance != -1)
                 {
 
                     bloque.BloquesInterno =
@@ -822,9 +726,7 @@ namespace Compilador___Projecto_Final
                 {
                     bloque.Error = "Se esperaba cierre de funcion \"}\"";
                 }
-
             }
-
             else
             {
                 bloque.Error = "Se esperaba \"{\"";
@@ -840,18 +742,12 @@ namespace Compilador___Projecto_Final
                     posCursor++;
                 }
             }
-
-
             return bloque;
-
         }
 
         public Bloque AnalizarSentencia(List<Lexema> lexemas, ref int posCursor, int finBloquePadre)
         {
-            //Debo leer hasta encontrar un ;
             int indicePuntoComa = IndicePuntoComa(lexemas, posCursor);
-
-
             Bloque bloque = new Bloque();
             bloque.Incia = posCursor;
 
@@ -864,7 +760,6 @@ namespace Compilador___Projecto_Final
                     bloque.Lexemas.Add(lexemas[i]);
                     posCursor++;
                 }
-
             }
             else if (!DelimitadoresBalanceados(lexemas, "(", ")", posCursor, indicePuntoComa))
             {
@@ -873,7 +768,6 @@ namespace Compilador___Projecto_Final
             }
             else
             {
-
                 for (int i = posCursor; i <= indicePuntoComa; i++)
                 {
                     string error = BuscarError(lexemas[i], i, lexemas);
@@ -885,74 +779,55 @@ namespace Compilador___Projecto_Final
                     {
                         bloque.Error = error;
                     }
-                    
+
                     posCursor++;
                 }
-                //for (int i = posCursor; i <= indicePuntoComa; i++)
-                //{
-                //    bloque.Lexemas.Add(lexemas[i]);
-                //    posCursor++;
-                //}
-
             }
 
             bloque.Finaliza = posCursor - 1;
             return bloque;
         }
 
-        public string BuscarError(Lexema lexema,int indiceLexema, List<Lexema> lexemas)
+        public string BuscarError(Lexema lexema, int indiceLexema, List<Lexema> lexemas)
         {
             switch (lexema.TipoElemento)
             {
                 case Enums.TipoElemento.Variable:
                     return AplicarReglasVariable(indiceLexema, lexemas);
-                    
+
                 case Enums.TipoElemento.TipoVariable:
                     return AplicarReglasTipoVar(indiceLexema, lexemas);
-                    
+
                 case Enums.TipoElemento.OperadorAritmetico:
                     return AplicarReglasOperadorAritmetico(indiceLexema, lexemas);
-                   
+
                 case Enums.TipoElemento.OperadorRelacional:
                     return "";
-                    
+
                 case Enums.TipoElemento.OperadorLogico:
                     return "";
-                    
+
                 case Enums.TipoElemento.OperadorAsignacion:
                     return AplicarReglasAsignacion(indiceLexema, lexemas);
-                    
-                //case Enums.TipoElemento.OperadorMisc:
-                    //return "";
-                    
-                //case Enums.TipoElemento.PalabraDefinicion:
-                    //return "";
-                    
+
                 case Enums.TipoElemento.OperadorTerminador:
                     return "";
-                    
-                
+
                 case Enums.TipoElemento.OperadorIncremental:
                     return "";
-                    
+
                 case Enums.TipoElemento.OperadorDecremental:
                     return "";
-                    
+
                 case Enums.TipoElemento.Cadena:
                     return "";
-                    
+
                 case Enums.TipoElemento.Caracter:
                     return "";
-                    
-                
             }
 
             return "";
         }
-
-        #endregion
-
-        #region Utilidades
 
         public bool DelimitadoresBalanceados(List<Lexema> lexemas, string simbolApertura, string simbolCierre,
             int indiceInicial, int indiceFinal)
@@ -987,11 +862,10 @@ namespace Compilador___Projecto_Final
                     if (lexemas[posCursor].Texto == simboloApertura)
                     {
                         abiertos++;
-
                     }
                     else if (lexemas[posCursor].Texto == simboloCierre)
                     {
-                        if (abiertos == 0) //Me encontre un } y no hay abiertos
+                        if (abiertos == 0)
                         {
                             salir = true;
                             break;
@@ -1001,7 +875,6 @@ namespace Compilador___Projecto_Final
                             abiertos--;
                         }
                     }
-
                     posCursor++;
                 }
                 else
@@ -1009,9 +882,6 @@ namespace Compilador___Projecto_Final
                     posCursor = -1;
                     salir = true;
                 }
-
-
-
             } while (!salir);
 
             return posCursor;
@@ -1039,15 +909,10 @@ namespace Compilador___Projecto_Final
                     salir = true;
                     posCursor = -1;
                 }
-
-
             } while (!salir);
-
-
 
             return posCursor;
         }
-
 
         public Bloque BloqueError(List<Lexema> lexemas, string mensajeError, ref int posCursor, int finBloquePadre)
         {
@@ -1070,8 +935,6 @@ namespace Compilador___Projecto_Final
 
         public bool PuntoComaCorrecto(List<Lexema> lexemas, int posCursor, int indicePuntoComa)
         {
-
-
             int asignaciones = 0;
             int declarartipoVar = 0;
             int llaves = 0;
@@ -1103,7 +966,7 @@ namespace Compilador___Projecto_Final
 
         public bool InitForCorrecto(List<Lexema> lexemas, int posCursor, int indicePuntoComa)
         {
-            if (indicePuntoComa - posCursor == 5) //Analizar bloque de asignacion y declaracion
+            if (indicePuntoComa - posCursor == 5)
             {
                 if (lexemas[posCursor + 1].Texto == "int" &&
                     lexemas[posCursor + 2].TipoElemento == Enums.TipoElemento.Variable &&
@@ -1116,7 +979,7 @@ namespace Compilador___Projecto_Final
                 {
                     return false;
                 }
-                    
+
             }
             else if (indicePuntoComa - posCursor == 4)
             {
@@ -1154,7 +1017,7 @@ namespace Compilador___Projecto_Final
 
         public bool IncrementoForCorrecto(List<Lexema> lexemas, int posCursor, int indiceParentesis)
         {
-            if (indiceParentesis - posCursor == 2) //Estamos ante una estructura contractada
+            if (indiceParentesis - posCursor == 2)
             {
                 if (lexemas[posCursor].TipoElemento == Enums.TipoElemento.Variable && lexemas[posCursor + 1].TipoElemento ==
                     Enums.TipoElemento.OperadorIncremental)
@@ -1170,7 +1033,7 @@ namespace Compilador___Projecto_Final
 
                 return false;
             }
-            else if (indiceParentesis - posCursor == 5) //Estamos ante una estructura completa
+            else if (indiceParentesis - posCursor == 5)
             {
                 if (lexemas[posCursor].TipoElemento == Enums.TipoElemento.Variable &&
                     lexemas[posCursor + 1].TipoElemento == Enums.TipoElemento.OperadorAsignacion &&
@@ -1182,15 +1045,10 @@ namespace Compilador___Projecto_Final
                 }
 
                 return false;
-
             }
 
             return false;
         }
-
-        
-
-        #endregion
 
         public List<string> ExtraerErroresBloques(List<Bloque> bloques)
         {

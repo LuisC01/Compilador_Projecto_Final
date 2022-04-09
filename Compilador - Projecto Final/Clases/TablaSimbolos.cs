@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Compilador___Projecto_Final
 {
@@ -15,14 +12,8 @@ namespace Compilador___Projecto_Final
         }
 
         public List<RegistroTabla> RegistrosTabla { get; set; }
-
         public List<Token> Tokens { get; set; }
 
-        /// <summary>
-        /// Me regresa cual es el siguiente correlativo que debe tener el siguiente
-        /// registro a ingresar
-        /// </summary>
-        /// <returns></returns>
         public int SiguienteCorrelativo()
         {
             if (RegistrosTabla.Count == 0)
@@ -58,10 +49,6 @@ namespace Compilador___Projecto_Final
             return RegistrosTabla.Any(x => x.Nombre == nombreVariable);
         }
         
-        /// <summary>
-        /// Primera fase del manejo de tokens y creacion de la tabla de simbolos
-        /// </summary>
-        /// <param name="listadoLexemas"></param>
         public void ProcesarListadoLexemas(List<Lexema> listadoLexemas)
         {
             foreach (var lexema in listadoLexemas.Where(x => x.TipoElemento == Enums.TipoElemento.Variable))
@@ -75,12 +62,6 @@ namespace Compilador___Projecto_Final
 
                 var indiceActual = listadoLexemas.IndexOf(lexema);
                 Enums.TipoVariable? tipoVariable = null;
-
-                //if (listadoLexemas.ElementAtOrDefault(indiceActual - 1) != null)
-                //{
-                //    tipoVariable = TextoToTipo(listadoLexemas[indiceActual - 1].Texto);
-                //}
-
                 InsertarRegistro(new RegistroTabla { Nombre = lexema.Texto , TipoVariable = tipoVariable});
             }
         }
@@ -106,6 +87,5 @@ namespace Compilador___Projecto_Final
             }
             return null;
         }
-
     }
 }

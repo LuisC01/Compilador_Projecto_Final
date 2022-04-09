@@ -52,7 +52,6 @@
     <Compile Include="Clases\Bloque.cs" />
     <Compile Include="Clases\Enums.cs" />
     <Compile Include="Clases\ExpresionTripleta.cs" />
-    <Compile Include="Clases\GeneradorCodigo.cs" />
     <Compile Include="Clases\Lexema.cs" />
     <Compile Include="Clases\RegistroTabla.cs" />
     <Compile Include="Clases\TablaSimbolos.cs" />

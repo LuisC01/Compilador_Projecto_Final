@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Compilador___Projecto_Final
 {
@@ -22,19 +19,18 @@ namespace Compilador___Projecto_Final
         {
             TablaSimbolos = new TablaSimbolos();
             Errores = new List<string>();
-            //Saco todos los lexemas que son del tipo variable
             List<Lexema> lexemasVariables = lexemas.Where(x => x.TipoElemento == Enums.TipoElemento.Variable).ToList();
+
             foreach (Lexema lexema in lexemasVariables)
             {
                 int indiceActual = lexemas.IndexOf(lexema);
 
-                //Estamos declarando
                 if (lexemas.ElementAtOrDefault(indiceActual - 1) != null &&
                     EsTipoDeclaracion(lexemas[indiceActual - 1].Texto))
                 {
                     ProcesarDeclaracion(lexema, indiceActual, lexemas);
                 }
-                else if(lexemas[indiceActual + 1].TipoElemento == Enums.TipoElemento.OperadorAsignacion) //Estamos re-asignando 
+                else if(lexemas[indiceActual + 1].TipoElemento == Enums.TipoElemento.OperadorAsignacion)
                 {
                     int indexPuntoComa = IndicePuntoComa(lexemas, indiceActual);
                     if (indexPuntoComa != -1 && PuntoComaCorrecto(lexemas, indiceActual, indexPuntoComa))
@@ -43,11 +39,7 @@ namespace Compilador___Projecto_Final
                     }
                 }
             }
-
-            //VerificarFuncionesRetorno(bloques);
         }
-
-        #region Verificacion tipos
 
         public bool EsTipoDeclaracion(string texto)
         {
@@ -62,25 +54,15 @@ namespace Compilador___Projecto_Final
 
         public void ProcesarDeclaracion(Lexema lexema, int indiceLexema, List<Lexema> lexemas)
         {
-            //Primero verificar si variable esta declarada
             if (VariableDeclarada(lexema))
             {
-                //Doy error diciendo que la variable lexema.texto ya esta declarada
                 Errores.Add("Error: La variable \"" + lexema.Texto + "\" ya habia sido declarada anteriormente");
             }
 
-            //Procedo a validar el tipo y si tiene valor
-
-
-            //Como es declaracion el tipo esta un lexeama atras
             Enums.TipoVariable tipoVariable = TextoToTipo(lexemas[indiceLexema - 1].Texto);
-
-            //Ahora veo si estaba solo declarando o tambien asignaba
-
 
             if (lexemas[indiceLexema + 1].TipoElemento == Enums.TipoElemento.OperadorAsignacion)
             {
-                //Mando a procesar una asignacion
                 TablaSimbolos.InsertarRegistro(new RegistroTabla()
                 {
                     Nombre = lexema.Texto,
@@ -91,27 +73,22 @@ namespace Compilador___Projecto_Final
             }
             else if (lexemas[indiceLexema + 1].TipoElemento == Enums.TipoElemento.OperadorTerminador)
             {
-                //Solo estaba declarando la variable, mando a insertar el registro
                 TablaSimbolos.InsertarRegistro(new RegistroTabla()
                 {
                     Nombre = lexema.Texto,
                     TipoVariable = tipoVariable
                 });
-
             }
         }
 
         public void ProcesarReAsignacion(Lexema lexema, int indiceLexema, List<Lexema> lexemas)
         {
-            //Primero verificar si variable esta declarada
             if (!VariableDeclarada(lexema))
             {
-                //Doy error diciendo que la variable lexema.texto ya esta declarada
                 Errores.Add("Error: La variable \"" + lexema.Texto + "\" no ha sido declarada anteriormente");
             }
             else
             {
-                //Como la variable si existe procedo a ver que le estoy asignando
                 RegistroTabla registroActual = TablaSimbolos.RegistrosTabla.First(x => x.Nombre == lexema.Texto);
                 Enums.TipoVariable tipoVariable = registroActual.TipoVariable == null
                     ? Enums.TipoVariable.Void
@@ -129,16 +106,13 @@ namespace Compilador___Projecto_Final
         public string ProcesarAsignacion(int indiceInicioAsignacion, List<Lexema> lexemas, Enums.TipoVariable tipoVariable)
         {
             string result = "";
-            //Solo estaba asignando un valor y ya
+            
             if (lexemas[indiceInicioAsignacion + 1].TipoElemento == Enums.TipoElemento.OperadorTerminador)
             {
-                //Estoy asignando el valor de una variable
                 if (lexemas[indiceInicioAsignacion].TipoElemento == Enums.TipoElemento.Variable)
                 {
-                    //Primero ver si la variable existe
                     if (VariableDeclarada(lexemas[indiceInicioAsignacion]))
                     {
-                        //Como la variable existe, procedo a ver si los tipos son compatibles
                         RegistroTabla registroTabla = TablaSimbolos.RegistrosTabla.First(x => x.Nombre == lexemas[indiceInicioAsignacion].Texto);
 
                         if (registroTabla.TipoVariable == tipoVariable)
@@ -161,7 +135,6 @@ namespace Compilador___Projecto_Final
                 }
                 else
                 {
-                    //Procedo a verificar que ese valor sea compatible al tipo
                     if (TipoElementoToTipoVar(lexemas[indiceInicioAsignacion].TipoElemento, lexemas[indiceInicioAsignacion].Texto) == tipoVariable) //Esta asignando el tipo correcto
                     {
                         result = lexemas[indiceInicioAsignacion].Texto;
@@ -175,7 +148,6 @@ namespace Compilador___Projecto_Final
             }
             else
             {
-                //Asignacion compleja
                 string resTentativo = AsignacionCompleja(indiceInicioAsignacion, IndicePuntoComa(lexemas, indiceInicioAsignacion) - 1, lexemas, tipoVariable);
                 if (tipoVariable == Enums.TipoVariable.Int && resTentativo.Contains("."))
                 {
@@ -196,10 +168,6 @@ namespace Compilador___Projecto_Final
         {
             string result = "";
 
-            //Estamos ante una asignacion compleja, en este punto primero hay que convertir toda variable 
-            //de la expresion en sus valores de la tabla
-
-            //Creo una copia de todos los lexemas de manera parcial
             List<Lexema> copiaLexemas = new List<Lexema>();
             for (int i = indiceInicio; i <= indiceFin; i++)
             {
@@ -223,16 +191,12 @@ namespace Compilador___Projecto_Final
                 }
             }
 
-            //En este punto ya converti todos las variables a lexemas con su respectivo valor
-
-            //Si tiene parentesis toca ver como operarlos
             if (copiaLexemas.Any(y => y.TipoElemento == Enums.TipoElemento.Parentesis))
             {
 
             }
             else
             {
-                //No hay parentesis, procedo a operar en formar secuencial
                 Lexema ladoIzq = null;
                 Lexema ladoDer = null;
                 Lexema op = null;
@@ -257,7 +221,6 @@ namespace Compilador___Projecto_Final
 
                         if (copiaLexemas.ElementAtOrDefault(i + 2) != null && (copiaLexemas[i + 2].Texto == "*" || copiaLexemas[i + 2].Texto == "/"))
                         {
-                            //Cambio los elementos
                             copiaLexemas[i + 1].Texto = AsignacionCompleja(i + 1, i + 3, copiaLexemas, tipoVariable);
                             copiaLexemas[i + 3].Texto = "0";
                             copiaLexemas[i + 2].Texto = "+";
@@ -266,7 +229,6 @@ namespace Compilador___Projecto_Final
 
                     if (ladoIzq != null && ladoDer != null && op != null)
                     {
-                        //Ya tenemos 3 partes listas
                         result = RealizarOperacion(ladoIzq, ladoDer, op, tipoVariable);
 
                         ladoIzq = new Lexema()
@@ -290,7 +252,6 @@ namespace Compilador___Projecto_Final
                 Texto = registro.Valor,
                 TipoElemento = TipoVarToTipoElemento(registro.TipoVariable.Value)
             };
-
         }
 
         public string RealizarOperacion(Lexema ladoIzq, Lexema ladoDer, Lexema op, Enums.TipoVariable tipoVariable)
@@ -306,12 +267,12 @@ namespace Compilador___Projecto_Final
             }
             if (tipoIzq == tipoDer)
             {
-                if (tipoIzq == Enums.TipoVariable.Int) //Estamos ante un entero
+                if (tipoIzq == Enums.TipoVariable.Int)
                 {
                     int enteroIzq = int.Parse(ladoIzq.Texto);
                     int enteroDer = int.Parse(ladoDer.Texto);
 
-                    if (op.Texto == "+") //Hacemos una suma
+                    if (op.Texto == "+")
                     {
                         result = (enteroIzq + enteroDer).ToString();
                     }
@@ -349,7 +310,7 @@ namespace Compilador___Projecto_Final
                     decimal decimalIzq = decimal.Parse(ladoIzq.Texto);
                     decimal decimalDer = decimal.Parse(ladoDer.Texto);
 
-                    if (op.Texto == "+") //Hacemos una suma
+                    if (op.Texto == "+")
                     {
                         result = (decimalIzq + decimalDer).ToString();
                     }
@@ -416,6 +377,7 @@ namespace Compilador___Projecto_Final
             int asignaciones = 0;
             int declarartipoVar = 0;
             int llaves = 0;
+
             for (int i = posCursor; i < indicePuntoComa; i++)
             {
                 if (lexemas[i].TipoElemento == Enums.TipoElemento.OperadorAsignacion)
@@ -453,7 +415,7 @@ namespace Compilador___Projecto_Final
                     }
                     else if (lexemas[posCursor].Texto == simboloCierre)
                     {
-                        if (abiertos == 0) //Me encontre un } y no hay abiertos
+                        if (abiertos == 0)
                         {
                             salir = true;
                             break;
@@ -497,10 +459,6 @@ namespace Compilador___Projecto_Final
                     break;
                 case Enums.TipoElemento.OperadorAsignacion:
                     break;
-                //case Enums.TipoElemento.OperadorMisc:
-                  //  break;
-                //case Enums.TipoElemento.PalabraDefinicion:
-                  //  break;
                 case Enums.TipoElemento.OperadorTerminador:
                     break;
                 case Enums.TipoElemento.Parentesis:
@@ -515,9 +473,6 @@ namespace Compilador___Projecto_Final
                     break;
                 case Enums.TipoElemento.OperadorDecremental:
                     break;
-                //case Enums.TipoElemento.Cadena:
-                  //  tipoVariable = Enums.TipoVariable.CharString;
-                    //break;
                 case Enums.TipoElemento.Caracter:
                     tipoVariable = Enums.TipoVariable.Char;
                     break;
@@ -536,37 +491,17 @@ namespace Compilador___Projecto_Final
                 case Enums.TipoVariable.Char:
                     tipoElemento = Enums.TipoElemento.Caracter;
                     break;
-                //case Enums.TipoVariable.UChar:
-                  //  break;
-                //case Enums.TipoVariable.SChar:
-                  //  break;
                 case Enums.TipoVariable.Int:
                     tipoElemento = Enums.TipoElemento.Numero;
                     break;
-               // case Enums.TipoVariable.UInt:
-                //    break;
-                //case Enums.TipoVariable.Short:
-                  //  break;
-                //case Enums.TipoVariable.UShort:
-                  //  break;
-                //case Enums.TipoVariable.Long:
-                  //  break;
-                //case Enums.TipoVariable.ULong:
-                    //break;
                 case Enums.TipoVariable.Float:
                     tipoElemento = Enums.TipoElemento.Numero;
                     break;
                 case Enums.TipoVariable.Double:
                     tipoElemento = Enums.TipoElemento.Numero;
                     break;
-                //case Enums.TipoVariable.LongDouble:
-                  //  break;
                 case Enums.TipoVariable.Void:
-
                     break;
-                //case Enums.TipoVariable.CharString:
-                  //  tipoElemento = Enums.TipoElemento.Cadena;
-                    //break;
             }
             return tipoElemento;
         }
@@ -591,22 +526,9 @@ namespace Compilador___Projecto_Final
                 case "void":
                     return Enums.TipoVariable.Void;
             }
-
             return Enums.TipoVariable.Void;
         }
 
-        #endregion
-        /*
-        public void VerificarFuncionesRetorno(List<Bloque> bloques)
-        {
-            //Filtro solo los bloques del tipo funcion
-            List<Bloque> bloquesFunciones = bloques.Where(y => y.TipoBloque == Enums.TipoBloque.Funcion).ToList();
-            foreach (Bloque bloque in bloquesFunciones)
-            {
-                VerificarRetornoBloque(bloque);
-            }
-        }
-        */
         public void VerificarRetornoBloque(Bloque bloque)
         {
             if (bloque.BloquesInterno == null || bloque.BloquesInterno.Count == 0 ||
@@ -615,12 +537,8 @@ namespace Compilador___Projecto_Final
                 Errores.Add("El bloque:" + string.Join(" ", bloque.Lexemas.Select(y => y.Texto)) + " no tiene un valor de retorno");
             }
 
-            //Al llegar aca si tiene valor de retorno pero hay que ver si es del tipo correcto
-
             Bloque bloqueRetorno = bloque.BloquesInterno.First(x => x.Lexemas.Any(y => y.Texto == "return"));
-
             Enums.TipoVariable tipoRetornoEsperado = TextoToTipo(bloque.Lexemas[0].Texto);
-
             Lexema lexemaRetorno = bloqueRetorno.Lexemas[1];
 
             if (lexemaRetorno.TipoElemento == Enums.TipoElemento.Numero)
@@ -637,7 +555,6 @@ namespace Compilador___Projecto_Final
             }
             else
             {
-                //Voy a extraer el valor de la variable para ver su tipo
                 var x = TablaSimbolos.RegistrosTabla.First(y => y.Nombre == lexemaRetorno.Texto).TipoVariable;
                 if (tipoRetornoEsperado != x)
                 {

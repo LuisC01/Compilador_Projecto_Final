@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Compilador___Projecto_Final
+﻿namespace Compilador___Projecto_Final
 {
     public class Lexema
     {
@@ -13,9 +7,6 @@ namespace Compilador___Projecto_Final
             this.Error = false;
         }
 
-        /// <summary>
-        /// Indica el texto del lexema: [variable] [numero] etc
-        /// </summary>
         public string Texto { get; set; }
 
         public Enums.TipoElemento TipoElemento { get; set; }

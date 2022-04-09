@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Compilador___Projecto_Final
 {
-    /// <summary>
-    /// Bloque de codigo, que puede ser de tipo Sentencia o Tipo estructura
-    /// </summary>
     public class Bloque
     {
         public Bloque()
@@ -16,23 +10,13 @@ namespace Compilador___Projecto_Final
             this.BloquesInterno = new List<Bloque>();
             this.Lexemas = new List<Lexema>();
         }
-        //public Enums.TipoBloque TipoBloque { get; set; }
 
         public List<Lexema> Lexemas { get; set; }
 
-        /// <summary>
-        /// Me indica para mi flujo de lexemas en donde inicia este bloque, numero de lexema
-        /// </summary>
         public int Incia { get; set; }
 
-        /// <summary>
-        /// Me indica donde finaliza el bloque
-        /// </summary>
         public int Finaliza { get; set; }
 
-        /// <summary>
-        /// Bloque interno, solo si es del tipo Estructura
-        /// </summary>
         public List<Bloque> BloquesInterno { get; set; }
 
         public Bloque BloquePadre { get; set; }
