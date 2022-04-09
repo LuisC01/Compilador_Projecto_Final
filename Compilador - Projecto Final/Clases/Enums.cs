@@ -18,8 +18,6 @@ namespace Compilador___Projecto_Final
             OperadorRelacional,
             OperadorLogico,
             OperadorAsignacion,
-            OperadorMisc,
-            PalabraDefinicion,
             OperadorTerminador,
             Parentesis,
             Corchete,
@@ -70,33 +68,16 @@ namespace Compilador___Projecto_Final
             ModuloIgual
         }
 
-        public enum OperadoresMisc
-        {
-            SizeOf,
-            Direccion,
-            Puntero,
-            Condicional
-        }
-
         public enum TipoVariable
         {
             Char,
-            UChar,
-            SChar,
             Int,
-            UInt,
-            Short,
-            UShort,
-            Long,
-            ULong,
             Float,
             Double,
-            LongDouble,
             Void,
-            CharString
-
+            String,
+            Booleano
         }
-
         public enum PalabrasReservadas
         {
             If,
@@ -108,16 +89,8 @@ namespace Compilador___Projecto_Final
             For,
             While,
             Do,
-            GoTo,
             Return,
-            Continue,
-            Enum,
-            Struct,
-            TypeDef,
-            Union,
-            Volatile
-
-            
+            Continue
         }
 
         public enum PalabrasDefinicion
@@ -128,13 +101,6 @@ namespace Compilador___Projecto_Final
             Extern,
             Register,
             Unsigned
-        }
-
-        public enum TipoBloque
-        {
-            Sentencia,
-            Estructura,
-            Funcion
         }
 
         public static string TipoVariablePatron()

@@ -40,6 +40,10 @@ namespace Compilador___Projecto_Final
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox_Input = new System.Windows.Forms.TextBox();
             this.BTNCLEAR = new System.Windows.Forms.Button();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Variable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGripTablaDeSimbolos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,6 +109,11 @@ namespace Compilador___Projecto_Final
             // dataGripTablaDeSimbolos
             // 
             this.dataGripTablaDeSimbolos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGripTablaDeSimbolos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Variable,
+            this.Tipo,
+            this.Valor});
             this.dataGripTablaDeSimbolos.Location = new System.Drawing.Point(6, 15);
             this.dataGripTablaDeSimbolos.Name = "dataGripTablaDeSimbolos";
             this.dataGripTablaDeSimbolos.Size = new System.Drawing.Size(680, 150);
@@ -171,6 +180,34 @@ namespace Compilador___Projecto_Final
             this.BTNCLEAR.UseVisualStyleBackColor = false;
             this.BTNCLEAR.Click += new System.EventHandler(this.BTNCLEAR_Click);
             // 
+            // Codigo
+            // 
+            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Variable
+            // 
+            this.Variable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Variable.HeaderText = "Variable";
+            this.Variable.Name = "Variable";
+            this.Variable.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +246,10 @@ namespace Compilador___Projecto_Final
         private System.Windows.Forms.Button BTNCLEAR;
         private System.Windows.Forms.TextBox textBox_Output;
         private System.Windows.Forms.TextBox textBox_Input;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Variable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
     }
 }
 
