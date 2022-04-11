@@ -43,7 +43,7 @@ namespace Compilador___Projecto_Final
 
         public bool EsTipoDeclaracion(string texto)
         {
-            if (texto == "int" || texto == "char" || texto == "float" || texto == "double" || texto == "void")
+            if (texto == "int" || texto == "char" || texto == "float" || texto == "double" || texto == "void" || texto == "booleano" || texto == "string")
             {
                 return true;
             }
