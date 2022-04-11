@@ -70,10 +70,5 @@ namespace Compilador___Projecto_Final
             }
             return retorno;
         }
-
-        public List<Bloque> GetBloquesHijos()
-        {
-            return BloquesInterno;
-        }
     }
 }

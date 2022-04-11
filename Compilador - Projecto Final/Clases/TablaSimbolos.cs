@@ -68,27 +68,5 @@ namespace Compilador___Projecto_Final
                 InsertarRegistro(new RegistroTabla { Nombre = lexema.Texto , TipoVariable = tipoVariable});
             }
         }
-
-        public Enums.TipoVariable? TextoToTipo(string texto)
-        {
-            switch (texto)
-            {
-                case "int":
-                    return Enums.TipoVariable.Int;
-                case "char":
-                    return Enums.TipoVariable.Char;
-                case "float":
-                    return Enums.TipoVariable.Float;
-                case "double":
-                    return Enums.TipoVariable.Double;
-                case "void":
-                    return Enums.TipoVariable.Void;
-                case "string":
-                    return Enums.TipoVariable.String;
-                case "booleano":
-                    return Enums.TipoVariable.Booleano;
-            }
-            return null;
-        }
     }
 }

@@ -400,43 +400,6 @@ namespace Compilador___Projecto_Final
             return true;
         }
 
-        public int IndiceBalance(List<Lexema> lexemas, int posCursor, string simboloApertura, string simboloCierre)
-        {
-            bool salir = false;
-            int abiertos = 0;
-
-            do
-            {
-                if (posCursor < lexemas.Count)
-                {
-                    if (lexemas[posCursor].Texto == simboloApertura)
-                    {
-                        abiertos++;
-                    }
-                    else if (lexemas[posCursor].Texto == simboloCierre)
-                    {
-                        if (abiertos == 0)
-                        {
-                            salir = true;
-                            break;
-                        }
-                        else
-                        {
-                            abiertos--;
-                        }
-                    }
-                    posCursor++;
-                }
-                else
-                {
-                    posCursor = -1;
-                    salir = true;
-                }
-            } while (!salir);
-
-            return posCursor;
-        }
-
         public Enums.TipoVariable TipoElementoToTipoVar(Enums.TipoElemento tipoElemento, string textoElemento, Enums.TipoVariable helper = Enums.TipoVariable.Float)
         {
             Enums.TipoVariable tipoVariable = Enums.TipoVariable.Void;
@@ -531,50 +494,6 @@ namespace Compilador___Projecto_Final
                     return Enums.TipoVariable.Booleano;
             }
             return Enums.TipoVariable.Void;
-        }
-
-        public void VerificarRetornoBloque(Bloque bloque)
-        {
-            if (bloque.BloquesInterno == null || bloque.BloquesInterno.Count == 0 ||
-                bloque.BloquesInterno.All(x => x.Lexemas.All(y => y.Texto != "return")))
-            {
-                Errores.Add("El bloque:" + string.Join(" ", bloque.Lexemas.Select(y => y.Texto)) + " no tiene un valor de retorno");
-            }
-
-            Bloque bloqueRetorno = bloque.BloquesInterno.First(x => x.Lexemas.Any(y => y.Texto == "return"));
-            Enums.TipoVariable tipoRetornoEsperado = TextoToTipo(bloque.Lexemas[0].Texto);
-            Lexema lexemaRetorno = bloqueRetorno.Lexemas[1];
-
-            if (lexemaRetorno.TipoElemento == Enums.TipoElemento.Numero)
-            {
-                Enums.TipoVariable tipoRetorno = TextoNumeroToTipo(lexemaRetorno.Texto);
-                if (tipoRetornoEsperado == Enums.TipoVariable.Float || tipoRetornoEsperado == Enums.TipoVariable.Double)
-                {
-                    tipoRetorno = TextoNumeroToTipo(lexemaRetorno.Texto, tipoRetornoEsperado);
-                }
-                if (tipoRetornoEsperado != tipoRetorno)
-                {
-                    Errores.Add("El bloque:" + string.Join(" ", bloque.Lexemas.Select(y => y.Texto)) + " no tiene un valor de retorno valido. Debe devolver " + tipoRetornoEsperado);
-                }
-            }
-            else
-            {
-                var x = TablaSimbolos.RegistrosTabla.First(y => y.Nombre == lexemaRetorno.Texto).TipoVariable;
-                if (tipoRetornoEsperado != x)
-                {
-                    Errores.Add("El bloque:" + string.Join(" ", bloque.Lexemas.Select(y => y.Texto)) + " no tiene un valor de retorno valido. Debe devolver " + tipoRetornoEsperado);
-                }
-            }
-        }
-
-        public Enums.TipoVariable TextoNumeroToTipo(string numeroTexto, Enums.TipoVariable helper = Enums.TipoVariable.Float)
-        {
-            if (numeroTexto.Contains("."))
-            {
-                return helper;
-            }
-
-            return Enums.TipoVariable.Int;
         }
     }
 }
