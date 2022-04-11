@@ -5,15 +5,20 @@ namespace Compilador___Projecto_Final
 {
     public class TablaSimbolos
     {
+        //Constructor de la clase tabla de simbolos.
         public TablaSimbolos()
         {
             RegistrosTabla = new List<RegistroTabla>();
             Tokens = new List<Token>();
         }
 
+        //Atributos de lista de los objetos tokens y registro de tablas con sus respectivos
+        //getter y setters.
         public List<RegistroTabla> RegistrosTabla { get; set; }
         public List<Token> Tokens { get; set; }
 
+        // Este metodo me retorna cual es el siguiente correlativo que debe tener el siguiente registro
+        // a ingresar.
         public int SiguienteCorrelativo()
         {
             if (RegistrosTabla.Count == 0)
@@ -26,6 +31,7 @@ namespace Compilador___Projecto_Final
             }
         }
 
+        // Este metodo nos permite evaluar los nombres de las expresiones ingresar los registros a la lista de registros de la tabla
         public void InsertarRegistro(RegistroTabla registro)
         {
             if (RegistrosTabla.Any(x => x.Nombre == registro.Nombre))
@@ -39,16 +45,13 @@ namespace Compilador___Projecto_Final
             }
         }
 
+        // Este metodo tiene la funcion de actualizar el valor del registro si es necesario
         public void ActualizarValorRegistro(string nombre, string valor)
         {
             RegistrosTabla.First(x => x.Nombre == nombre).Valor = valor;
         }
 
-        public bool VariableEstaDeclarada(string nombreVariable)
-        {
-            return RegistrosTabla.Any(x => x.Nombre == nombreVariable);
-        }
-        
+        // Primera fase del manejo de tokens y creacion de la tabla de simbolos.
         public void ProcesarListadoLexemas(List<Lexema> listadoLexemas)
         {
             foreach (var lexema in listadoLexemas.Where(x => x.TipoElemento == Enums.TipoElemento.Variable))

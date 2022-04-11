@@ -148,7 +148,7 @@ namespace Compilador___Projecto_Final
         {
             textBox_Input.Text = null;
             textBox_Output.Text = null;
-            dataGripTablaDeSimbolos.Rows.Clear();
+            LimpiarTablaDeSimbolos();
         }
     }
 }

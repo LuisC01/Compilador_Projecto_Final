@@ -525,6 +525,10 @@ namespace Compilador___Projecto_Final
                     return Enums.TipoVariable.Double;
                 case "void":
                     return Enums.TipoVariable.Void;
+                case "string":
+                    return Enums.TipoVariable.String;
+                case "booleano":
+                    return Enums.TipoVariable.Booleano;
             }
             return Enums.TipoVariable.Void;
         }

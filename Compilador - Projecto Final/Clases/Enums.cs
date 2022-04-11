@@ -4,6 +4,8 @@ namespace Compilador___Projecto_Final
 {
     public static class Enums
     {
+        // Este metodo Enum nos permite hacer una lista de constantes que son
+        // un tipo de elemento en el programa.
         public enum TipoElemento
         {
             Variable,
@@ -25,7 +27,8 @@ namespace Compilador___Projecto_Final
             Caracter,
             Coma
         }
-
+        // Este metodo Enum nos permite hacer una lista de constantes que son
+        // los operadores que se utilizan en el algoritmo que evaluara el compilador.
         public enum OperadoresAritmeticos
         {
             Suma,
@@ -35,7 +38,8 @@ namespace Compilador___Projecto_Final
             Incremental,
             Decremental
         }
-
+        // Este metodo Enum nos permite hacer una lista de constantes que son los tipos de
+        // operadores relacionales que se utilizan en el algoritmo que evaluara el compilador.
         public enum OperadoresRelacionales
         {
             Igualdad,
@@ -45,13 +49,16 @@ namespace Compilador___Projecto_Final
             Menor,
             MenorIgual
         }
-
+        // Este metodo Enum nos permite hacer una lista de constantes que son los operadores
+        // logicos que se utilizan en el algoritmo que evaluara el compilador.
         public enum OperadoresLogicos
         {
             And,
-            Or
+            Or,
+            Not
         }
-
+        // Este metodo Enum nos permite hacer una lista de constantes que son los operadores de
+        // asignacion que se utilizan en el algoritmo que evaluara el compilador.
         public enum OperadoresAsignacion
         {
             Igual,
@@ -60,7 +67,8 @@ namespace Compilador___Projecto_Final
             MultiplicacionIgual,
             DivisionIgual
         }
-
+        // Este metodo Enum nos permite hacer una lista de constantes que son los tipos de 
+        // variables basicas que se utilizan en el algoritmo que evaluara el compilador.
         public enum TipoVariable
         {
             Char,
@@ -71,6 +79,8 @@ namespace Compilador___Projecto_Final
             String,
             Booleano
         }
+        // Este metodo Enum nos permite hacer una lista de constantes que son palabras reservadas
+        // o condiciones de evaluacion que se utilizan en el algoritmo que evaluara el compilador.
         public enum PalabrasReservadas
         {
             If,
