@@ -439,6 +439,9 @@ namespace Compilador___Projecto_Final
                 case Enums.TipoElemento.Caracter:
                     tipoVariable = Enums.TipoVariable.Char;
                     break;
+                case Enums.TipoElemento.Cadena:
+                    tipoVariable = Enums.TipoVariable.String;
+                    break;
                 case Enums.TipoElemento.Coma:
                     break;
             }
@@ -451,6 +454,9 @@ namespace Compilador___Projecto_Final
 
             switch (tipoVariable)
             {
+                case Enums.TipoVariable.String:
+                    tipoElemento = Enums.TipoElemento.Cadena;
+                    break;
                 case Enums.TipoVariable.Char:
                     tipoElemento = Enums.TipoElemento.Caracter;
                     break;
